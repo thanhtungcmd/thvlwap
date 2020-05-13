@@ -19,3 +19,10 @@ export const getMenuSuccess = (data: any) => {
         data: data
     }
 }
+
+export const toggleMenuAction = (data: boolean) => {
+    return {
+        type: types.TOGGLE_MENU,
+        data: data
+    }
+}

@@ -1,19 +1,19 @@
 import * as React from "react"
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { bindActionCreators, Dispatch } from "redux"
 import { connect } from "react-redux"
 import StateInterface from "reducer/index.reducer.type"
 import * as MenuAction from "action/menu.action"
-import { MenuState, MenuItem } from "reducer/menu.reducer.type"
+import { MenuState } from "reducer/menu.reducer.type"
 
 interface DispatchPropsInterface {
-    actions: {
+    actions?: {
         getMenuAction: any,
     }
 }
 
 interface StatePropsInterface {
-    menu: MenuState
+    menu?: MenuState
 }
 
 type PropsInterface = StatePropsInterface & DispatchPropsInterface
@@ -34,35 +34,33 @@ const Menu: React.FunctionComponent<PropsInterface> = props => {
         props.actions.getMenuAction();
     }, [])
 
-    useEffect(() => {
-        console.log(props);
-    })
+    const renderMenuView = () => {
+        return props.menu.data.map((item, key) => {
+            return (
+                <li key={key}>
+                    <img className="menu-image" alt="menu-image"
+                         src={require('asset/img/home-run.png')}/>
+                    <a className="pl-3">{item.name}</a>
+                </li>
+            )
+        });
+    }
 
-    // const renderMenuView = () => {
-    //     if (props.menu.data.length > 0) {
-    //         return props.menu.data.map((item, key) => {
-    //             return (
-    //                 <li key={key}>
-    //                     <img className="menu-image" alt="menu-image"
-    //                          src={require('asset/img/home-run.png')}/>
-    //                     <a className="pl-3">{item.name}</a>
-    //                 </li>
-    //             )
-    //         });
-    //     }
-    // }
+    const renderToggleMenu = () => {
+        return (props.menu.show) ? ' d-block' : ' d-none';
+    }
 
     return (
-        <div className="hn-menu-box">
+        <div className={"hn-menu-box" + renderToggleMenu()}>
             <ul>
-                {/*{ renderMenuView() }*/}
+                { renderMenuView() }
             </ul>
         </div>
-    );
+    )
 
 }
 
-export default connect<StatePropsInterface, DispatchPropsInterface>(
+export default connect<StatePropsInterface, DispatchPropsInterface, PropsInterface, StateInterface>(
     mapStateToProps,
     mapDispatchToProps
 )(Menu);
