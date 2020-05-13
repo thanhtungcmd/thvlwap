@@ -1,5 +1,5 @@
 import * as React from "react"
-
+import Menu from "plugin/Menu"
 
 const Home: React.FunctionComponent<{}> = props => {
 
@@ -22,6 +22,7 @@ const Home: React.FunctionComponent<{}> = props => {
                             <img src={ require('asset/img/Search.png') } />
                         </div>
                     </div>
+                    <Menu/>
                 </div>
             </div>
         </div>

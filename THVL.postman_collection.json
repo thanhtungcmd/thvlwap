@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "87139ae9-5165-40f8-a3b0-518bb7ba2b84",
+		"name": "THVL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Menu List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.thvli.vn/backend/cm/menu/e3f56e40-94b0-4e1f-9830-7c7f0d1bd354",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thvli",
+						"vn"
+					],
+					"path": [
+						"backend",
+						"cm",
+						"menu",
+						"e3f56e40-94b0-4e1f-9830-7c7f0d1bd354"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ribbon of Menu",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.thvli.vn/backend/cm/page/trang-chu",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thvli",
+						"vn"
+					],
+					"path": [
+						"backend",
+						"cm",
+						"page",
+						"trang-chu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Content of Ribbon",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.thvli.vn/backend/cm/ribbon/abed9bb6-ccfd-4a78-93aa-a31f89cca402/?page=1",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thvli",
+						"vn"
+					],
+					"path": [
+						"backend",
+						"cm",
+						"ribbon",
+						"abed9bb6-ccfd-4a78-93aa-a31f89cca402",
+						""
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Content Detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.thvli.vn/backend/cm/detail/vang-bong-mot-thoi",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thvli",
+						"vn"
+					],
+					"path": [
+						"backend",
+						"cm",
+						"detail",
+						"vang-bong-mot-thoi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Episodes of Season",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.thvli.vn/backend/cm/season_by_id/4a15355e-7610-4573-9474-85c0b377bbf3",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thvli",
+						"vn"
+					],
+					"path": [
+						"backend",
+						"cm",
+						"season_by_id",
+						"4a15355e-7610-4573-9474-85c0b377bbf3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Related",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.thvli.vn/backend/cm/related/cca7b40d-a422-45ce-8bcf-0c973f2f65c5",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thvli",
+						"vn"
+					],
+					"path": [
+						"backend",
+						"cm",
+						"related",
+						"cca7b40d-a422-45ce-8bcf-0c973f2f65c5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get EPG",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.thvli.vn/backend/cm/epg/?channel_id=aab94d1f-44e1-4992-8633-6d46da08db42&schedule_date=2020-05-11",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thvli",
+						"vn"
+					],
+					"path": [
+						"backend",
+						"cm",
+						"epg",
+						""
+					],
+					"query": [
+						{
+							"key": "channel_id",
+							"value": "aab94d1f-44e1-4992-8633-6d46da08db42"
+						},
+						{
+							"key": "schedule_date",
+							"value": "2020-05-11"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Clip Hay",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.thvli.vn/backend/cm/clip_hay/0916735d-8759-4c63-8012-9f9b9800a79f",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thvli",
+						"vn"
+					],
+					"path": [
+						"backend",
+						"cm",
+						"clip_hay",
+						"0916735d-8759-4c63-8012-9f9b9800a79f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.thvli.vn/backend/cm/search/vang%20bong/",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thvli",
+						"vn"
+					],
+					"path": [
+						"backend",
+						"cm",
+						"search",
+						"vang%20bong",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
