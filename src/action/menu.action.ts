@@ -1,6 +1,6 @@
 import * as types from 'action/menu.action.type'
 import { Dispatch } from "redux"
-import { ApiGetMenu } from "api/menu.api"
+import { ApiGetMenu } from "api/index.api"
 
 export const getMenuAction = () => {
     return async (dispatch: Dispatch) => {
