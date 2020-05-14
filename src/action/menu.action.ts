@@ -26,3 +26,10 @@ export const toggleMenuAction = (data: boolean) => {
         data: data
     }
 }
+
+export const changeTitleAction = (data: string) => {
+    return {
+        type: types.CHANGE_TITLE,
+        data: data
+    }
+}

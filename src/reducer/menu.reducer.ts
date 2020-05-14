@@ -20,6 +20,12 @@ const menuReducer = (state: MenuState = initMenu, action: MENU_ACTION) : MenuSta
                 show: action.data
             }
 
+        case "CHANGE_TITLE":
+            return {
+                ...state,
+                title: action.data
+            }
+
         default:
             return state;
     }

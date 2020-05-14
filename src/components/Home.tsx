@@ -5,8 +5,9 @@ import StateInterface from "../reducer/index.reducer.type";
 import {bindActionCreators, Dispatch} from "redux";
 import * as HomeAction from "action/home.action";
 import {connect} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import Slider from "react-slick"
+import * as MenuAction from "action/menu.action";
 
 interface StatePropsInterface {
     home?: HomeState
@@ -15,6 +16,7 @@ interface StatePropsInterface {
 interface DispatchPropsInterface {
     actions?: {
         getHomePageAction: any,
+        changeTitleAction: any
     }
 }
 
@@ -26,19 +28,52 @@ const mapStateToProps = (state: StateInterface) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     actions: bindActionCreators({
-        getHomePageAction: HomeAction.getHomePageAction
+        getHomePageAction: HomeAction.getHomePageAction,
+        changeTitleAction: MenuAction.changeTitleAction
     }, dispatch)
 });
 
 const Home: React.FunctionComponent<PropsInterface> = props => {
 
+    const [lastScrollTop, setLastScrollTop] = useState(0);
+
     useEffect(() => {
         props.actions.getHomePageAction();
+        props.actions.changeTitleAction('');
+
+        // Scroll End Page
+        document.addEventListener('scroll', trackScrolling, false);
+        document.addEventListener('resize', trackScrolling, false);
     }, [])
 
     useEffect(() => {
         console.log(props.home);
     })
+
+    const trackScrolling = () => {
+        // const wrappedElement = document.getElementById('container');
+        // if ( (wrappedElement.getBoundingClientRect().bottom - 74) <= window.innerHeight ) {
+        //     if (typeof this.props.category.detail.links.next != 'undefined' && this.state.loadmore == false) {
+        //         this.setState({
+        //             loadmore: true
+        //         });
+        //         this.props.actions.loadMoreCategoryAction(this.props.category.detail.links.next);
+        //     }
+        // }
+
+        let st = window.pageYOffset
+        if (st > lastScrollTop){
+            $('.category-group').css({
+                top: 0
+            });
+        } else {
+            $('.category-group').css({
+                top: '74px'
+            });
+        }
+        let valueLastScrollTop = st <= 0 ? 0 : st;
+        setLastScrollTop(valueLastScrollTop);
+    }
 
     const renderBanner = () => {
         let settings = {
@@ -61,7 +96,7 @@ const Home: React.FunctionComponent<PropsInterface> = props => {
         })
 
         return (
-            <div className="container-fluid header-3 pr-0 pl-0">
+            <div className="container-fluid header-3 pr-0 pl-0 overflow-hidden">
                 <div className="container pr-0 pl-0">
                 <div className="row">
                     <div className="col-12">
@@ -107,10 +142,10 @@ const Home: React.FunctionComponent<PropsInterface> = props => {
                     <div className="container" key={key}>
                         <div className="row mb-2">
                             <div className="col-6 div-left">
-                                <a href="#" className="input-a2 text-uppercase">{item.name}</a>
+                                <a href={'/danh-muc/' + item.id} className="input-a2 text-uppercase">{item.name}</a>
                             </div>
                             <div className="col-6 div-right">
-                                <a href="#" className="input-a2">Tất cả &gt;</a>
+                                <a href={'/danh-muc/' + item.id} className="input-a2">Tất cả &gt;</a>
                             </div>
                         </div>
                         <div className="row">
@@ -129,7 +164,7 @@ const Home: React.FunctionComponent<PropsInterface> = props => {
     }
 
     return (
-        <div>
+        <div id="container">
             <Header/>
             { renderBanner() }
             { renderRibbon() }

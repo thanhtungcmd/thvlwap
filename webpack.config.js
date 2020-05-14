@@ -45,7 +45,7 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: ''
+        publicPath: '/'
     },
     // optimization: {
     //     minimizer: [
@@ -69,7 +69,7 @@ module.exports = {
     //     }
     // },
     plugins: [
-        new CleanWebpackPlugin(),
+        // new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: './src/asset/html/index.html'
         }),

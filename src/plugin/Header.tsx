@@ -34,22 +34,36 @@ const Header: React.FunctionComponent<PropsInterface> = props => {
         props.actions.toggleMenuAction(!props.menu.show)
     }
 
+    const renderLogo = () => {
+        if (typeof props.menu.title == "string" && props.menu.title.length > 0) {
+            return (
+                <div className="image-logo2">
+                    { props.menu.title }
+                </div>
+            )
+        }
+
+        return (
+            <div className="image-logo2">
+                <img src={ require('asset/img/logo.png') } />
+            </div>
+        )
+    }
+
     return (
         <div className="container-fluid header-1">
             <div className="container">
                 <div className="row position-relative header-box">
                     <div className="col-1 header-1-1"
-                        onClick={ handleToggleMenu.bind(this) }>
+                         onClick={ handleToggleMenu.bind(this) }>
                         <div className="image-back hn-menu">
                             <img src={ require('asset/img/menu.png') } />
                         </div>
                     </div>
                     <div className="col-10 header-1-2">
-                        <div className="image-logo2">
-                            <img src={ require('asset/img/logo.png') } />
-                        </div>
+                        { renderLogo() }
                     </div>
-                    <div className="col-1 header-1-1">
+                    <div className="col-1 header-1-4">
                         <div className="image-back float-right">
                             <img src={ require('asset/img/Search.png') } />
                         </div>

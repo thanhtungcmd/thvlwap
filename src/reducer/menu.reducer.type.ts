@@ -1,6 +1,7 @@
 export interface MenuState {
     data?: Array<MenuItem>,
-    show?: boolean
+    show?: boolean,
+    title?: string
 }
 
 export interface MenuItem {

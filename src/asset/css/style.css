@@ -26,11 +26,8 @@
 img {
     width: 100%;
 }
-.container {
-    overflow: hidden;
-}
 .header-box {
-    padding: 5px 0;
+    padding: 5px 0 10px 0;
 }
 .header-1 {
     background: #0e0e0e;
@@ -57,6 +54,13 @@ img {
     font-family: ROBOTO-BOLD_1;
     position: relative;
     border: 2px solid #b7b7b7;
+}
+.header-1-4 {
+    padding: 8px 0px 0px 0px;
+    position: relative;
+}
+.header-1-4 .image-back {
+    width: 25px;
 }
 
 .a-menu {
@@ -381,4 +385,22 @@ input[type=password] {
 }
 .slick-slide img {
     min-height: 210px;
+}
+.text-title {
+    color: #ffffff;
+    text-align: left;
+    font-family: ROBOTO-REGULAR_1;
+    font-size: 15px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.text-sub {
+    color: #ffffff;
+    text-align: left;
+    font-family: ROBOTO-REGULAR_1;
+    font-size: 13px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
