@@ -35,27 +35,32 @@ const Header: React.FunctionComponent<PropsInterface> = props => {
     }
 
     return (
-        <div className="container">
-            <div className="row position-relative header-box">
-                <div className="col-1 header-1-1"
-                    onClick={ handleToggleMenu.bind(this) }>
-                    <div className="image-back hn-menu">
-                        <img src={ require('asset/img/menu.png') } />
+        <div className="container-fluid header-1">
+            <div className="container">
+                <div className="row position-relative header-box">
+                    <div className="col-1 header-1-1"
+                        onClick={ handleToggleMenu.bind(this) }>
+                        <div className="image-back hn-menu">
+                            <img src={ require('asset/img/menu.png') } />
+                        </div>
                     </div>
-                </div>
-                <div className="col-10 header-1-2">
-                    <div className="image-logo2">
-                        <img src={ require('asset/img/logo.png') } />
+                    <div className="col-10 header-1-2">
+                        <div className="image-logo2">
+                            <img src={ require('asset/img/logo.png') } />
+                        </div>
                     </div>
-                </div>
-                <div className="col-1 header-1-1">
-                    <div className="image-back float-right">
-                        <img src={ require('asset/img/Search.png') } />
+                    <div className="col-1 header-1-1">
+                        <div className="image-back float-right">
+                            <img src={ require('asset/img/Search.png') } />
+                        </div>
                     </div>
+                    <Menu/>
                 </div>
-
-                <Menu/>
-
+            </div>
+            <div className="container-fluid header-2 pr-0 pl-0">
+                <div className="row position-relative">
+                    <img src={ require('asset/img/Rectangle 2.png') }/>
+                </div>
             </div>
         </div>
     )

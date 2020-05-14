@@ -14,7 +14,7 @@ export interface BannerItem {
 export interface RibbonItem {
     id: string,
     name: string,
-    item: Array<MovieItem>
+    items: Array<MovieItem>
 }
 
 export interface MovieItem {
@@ -23,6 +23,6 @@ export interface MovieItem {
     views: number,
     favorites: number,
     images: {
-        poster: string
+        thumbnail: string
     }
 }

@@ -26,6 +26,9 @@
 img {
     width: 100%;
 }
+.container {
+    overflow: hidden;
+}
 .header-box {
     padding: 5px 0;
 }
@@ -93,12 +96,14 @@ img {
 }
 
 .phim-tieude {
-    padding-left: 10px;
     color: #ffffff;
     text-align: left;
     font-family: ROBOTO-MEDIUM_1;
-    font-size: larger;
-    height: 10px;
+    font-size: 16px;
+    margin: 10px 0 6px 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .phim-tieude2 {
@@ -137,13 +142,10 @@ img {
     background: #0e0e0e;
     position: relative;
     width: 100%;
-    height: 10px;
-    padding-top: 10px;
 }
 
 .header-3 {
     background: #0e0e0e;
-    padding-top: 5px;
     text-align: center;
 }
 
@@ -151,7 +153,7 @@ img {
     background: #0e0e0e;
     padding-top: 10px;
     text-align: center;
-    padding-bottom: 500px;
+    padding-bottom: 50px;
 }
 
 .header-5 {
@@ -222,8 +224,8 @@ img {
 
 .detail-1 {
     color: #ffffff;
-    padding: 5px 5px 5px 5px;
     font-family: ROBOTO-BOLD_1;
+    margin-bottom: 25px;
 }
 
 .detail-2 {
@@ -368,11 +370,15 @@ input[type=password] {
     font-family: ROBOTO-REGULAR_1;
     font-weight: 600;
 }
-
-.MultiCarousel { float: left; overflow: hidden; padding: 15px; width: 100%; position:relative; }
-.MultiCarousel .MultiCarousel-inner { transition: 1s ease all; float: left; }
-.MultiCarousel .MultiCarousel-inner .item { float: left; padding: 10px 10px 10px 10px}
-.MultiCarousel .leftLst, .MultiCarousel .rightLst { position:absolute; border-radius:50%;top:calc(50% - 20px); }
-.MultiCarousel .leftLst { left:0; }
-.MultiCarousel .rightLst { right:0; }
-.MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over { pointer-events: none; background:#ccc; }
+.movie-view {
+    font-size: 12px;
+    padding-right: 5px;
+}
+.movie-like {
+    font-size: 12px;
+    padding-left: 0px;
+    text-align: right;
+}
+.slick-slide img {
+    min-height: 210px;
+}
