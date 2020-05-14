@@ -4,6 +4,7 @@ export interface RibbonState {
     id?: string,
     name?: string,
     items?: Array<MovieItem>,
+    page?: number,
     metadata?: {
         total: number,
         limit: number,

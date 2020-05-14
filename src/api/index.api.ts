@@ -18,3 +18,11 @@ export const ApiGetRibbonDetail = (id: string, page: number = 1) => {
         }
     });
 }
+
+export const ApiRibbonLoadMore = (id: string, page: number) => {
+    return axios.get(LINK_RIBBON_DETAIL + id, {
+        params: {
+            page: page
+        }
+    });
+}

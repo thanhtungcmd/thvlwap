@@ -5,7 +5,7 @@ import {bindActionCreators, Dispatch} from "redux";
 import * as RibbonAction from "action/ribbon.action";
 import * as MenuAction from "action/menu.action";
 import {connect} from "react-redux";
-import {useEffect} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {RibbonState} from "reducer/ribbon.reducer.type";
 
 
@@ -16,7 +16,8 @@ interface StatePropsInterface {
 interface DispatchPropsInterface {
     actions?: {
         getRibbonDetailAction: any,
-        changeTitleAction: any
+        changeTitleAction: any,
+        ribbonLoadMoreAction: any
     }
 }
 
@@ -37,21 +38,56 @@ const mapStateToProps = (state: StateInterface) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     actions: bindActionCreators({
         getRibbonDetailAction: RibbonAction.getRibbonDetailAction,
-        changeTitleAction: MenuAction.changeTitleAction
+        changeTitleAction: MenuAction.changeTitleAction,
+        ribbonLoadMoreAction: RibbonAction.ribbonLoadMoreAction
     }, dispatch)
 });
 
 const Ribbon: React.FunctionComponent<PropsInterface> = props => {
+
+    const [showLoading, setShowLoading] = useState(false);
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         props.actions.getRibbonDetailAction(props.match.params.id, 1);
     }, [])
 
     useEffect(() => {
+        if (typeof props.ribbon.page != "undefined") {
+            document.addEventListener('scroll', trackScrolling, true);
+            document.addEventListener('resize', trackScrolling, true);
+        }
+    }, [props.ribbon])
+
+    useEffect(() => {
+        setShowLoading(false);
+    }, [props.ribbon.items])
+
+    useEffect(() => {
         if (typeof props.ribbon.name != "undefined") {
             props.actions.changeTitleAction(props.ribbon.name);
         }
     }, [props.ribbon.name]);
+
+    const trackScrolling = useCallback( () => {
+        const wrappedElement = document.getElementById('container');
+        if ((wrappedElement.getBoundingClientRect().bottom - 1) <= window.innerHeight) {
+            if (!showLoading) {
+                setShowLoading(true);
+                setPage(page + 1)
+                console.log(page);
+                setTimeout(() => {
+                    // props.actions.ribbonLoadMoreAction(props.match.params.id, page + 1)
+                    testData(page + 1);
+                }, 2000)
+            }
+        }
+    }, [page])
+
+    const testData = (page: number) => {
+        props.actions.ribbonLoadMoreAction(props.match.params.id, page)
+        console.log(page);
+    }
 
     const renderRibbon = () => {
         if (typeof props.ribbon.items != "undefined") {
@@ -84,11 +120,20 @@ const Ribbon: React.FunctionComponent<PropsInterface> = props => {
                     )
                 })
             }
+
+            let renderLoading;
+            renderLoading = (
+                <div className="col-12 text-center">
+                    <img src={ require('asset/img/spinner.gif') } style={{ width: 75 }} />
+                </div>
+            )
+
             return (
                 <div className="container-fluid header-4 pt-4 pr-0 pl-0">
                     <div className="container">
                         <div className="row">
                             {listMovie}
+                            {renderLoading}
                         </div>
                     </div>
                 </div>
@@ -97,7 +142,7 @@ const Ribbon: React.FunctionComponent<PropsInterface> = props => {
     }
 
     return (
-        <div>
+        <div id="container">
             <Header/>
             { renderRibbon() }
         </div>
