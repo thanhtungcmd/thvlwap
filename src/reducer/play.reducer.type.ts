@@ -1,6 +1,9 @@
+import {MovieItem} from "./home.reducer.type";
+
 export interface PlayState {
     data?: {
         id?: string,
+        group?: string,
         type?: number,
         title?: string,
         short_description?: string,
@@ -14,14 +17,17 @@ export interface PlayState {
         },
         default_episode?: {
             id: string,
-            title: string
+            title: string,
+            group: string,
             images: {
                 thumbnail: string
             },
             play_info?: PlayInfo
         }
     },
-    season?: Array<SeasonItem>
+    season?: Array<SeasonItem>,
+    relate?: Array<MovieItem>,
+    tab: number
 }
 
 export interface PlayInfo {
@@ -39,6 +45,8 @@ export interface ActorItem {
 export interface SeasonItem {
     id: string,
     title: string,
+    views: number,
+    favorites: number,
     images: {
         thumbnail: string
     }

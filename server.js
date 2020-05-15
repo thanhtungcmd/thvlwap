@@ -57,6 +57,13 @@ app.get('/backend/cm/season_by_id/:id', async (req, res) => {
     });
     return res.send(data);
 });
+
+app.get('/backend/cm/related/:id', async (req, res) => {
+    let data = await request({
+        url: 'https://api.thvli.vn/backend/cm/related/'+ req.params.id
+    });
+    return res.send(data);
+});
 /*-----Backend Area-----*/
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))

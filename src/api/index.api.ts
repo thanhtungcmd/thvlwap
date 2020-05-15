@@ -30,5 +30,9 @@ export const ApiGetPlay = (slug: string) => {
 }
 
 export const ApiGetSeason = (id: string) => {
-    return axios.get(link.LINK_SEASON + id,);
+    return axios.get(link.LINK_SEASON + id);
+}
+
+export const ApiGetRelate = (id: string) => {
+    return axios.get(link.LINK_RELATE + id);
 }

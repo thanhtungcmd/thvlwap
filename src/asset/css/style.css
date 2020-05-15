@@ -23,6 +23,9 @@
     src: url('fonts/ROBOTO-REGULAR_1.TTF') format('truetype');
 }
 
+body {
+    background: #0e0e0e;
+}
 img {
     width: 100%;
 }
@@ -408,6 +411,38 @@ input[type=password] {
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.play-nav {
+    border-bottom: 1px solid #fff;
+    text-transform: uppercase;
+}
+.play-nav .active {
+    color: #fff;
+    border-bottom: 5px solid #0060af;
+    background: #0e0e0e !important;
+}
+.play-nav .nav-item {
+    color: #929292;
+    font-size: 11px;
+    padding: 5px 0px;
+}
+@media only screen and (min-width: 321px) {
+    .play-nav .nav-item {
+        color: #929292;
+        font-size: 14px;
+        padding: 10px 0px;
+    }
+}
+.play-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+.color-white {
+    color: #fff;
+}
+.play-sub {
+    font-size: 13px;
+    text-align: justify;
+}
 
 /*Video*/
 .video-js {
@@ -523,4 +558,8 @@ video-js.vjs-ended .vjs-big-play-button,.video-js.vjs-paused .vjs-big-play-butto
 
 .video-js .vjs-load-progress {
     background: rgba(255,255,255,0.5);
+}
+
+.video-js button {
+    outline: none;
 }

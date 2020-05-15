@@ -61,7 +61,9 @@ const Header: React.FunctionComponent<PropsInterface> = props => {
                         </div>
                     </div>
                     <div className="col-10 header-1-2">
-                        { renderLogo() }
+                        <a href='/'>
+                            { renderLogo() }
+                        </a>
                     </div>
                     <div className="col-1 header-1-4">
                         <div className="image-back float-right">
