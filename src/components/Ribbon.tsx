@@ -6,7 +6,6 @@ import * as RibbonAction from "action/ribbon.action";
 import * as MenuAction from "action/menu.action";
 import {connect} from "react-redux";
 import Header from "plugin/Header";
-import {useCallback} from "react";
 
 interface StatePropsInterface {
     ribbon?: RibbonState,
@@ -85,25 +84,27 @@ class Ribbon extends React.Component<PropsInterface, {}> {
                     let viewCount = (item.views > 1000) ? Math.round(item.views/1000) + 'K' : item.views
                     return (
                         <div className="col-12 mb-4" key={key}>
+                            <a href={ '/chi-tiet/'+ item.slug }>
                             <div className="row">
-                                <div className="col-5 pr-0">
-                                    <img src={item.images.thumbnail} alt={item.title}/>
-                                </div>
-                                <div className="col-7">
-                                    <div className="text-title">{ item.title }</div>
-                                    <div className="text-sub mt-1">{ item.short_description }</div>
-                                    <div className="row position-relative mt-2">
-                                        <div className="col-6 div-left movie-view">
-                                            <img className="phim-image" src={require('asset/img/vector.png')}/>
-                                            <span className="phim-mota">{ viewCount } lượt xem</span>
-                                        </div>
-                                        <div className="col-6 div-left movie-like">
-                                            <img className="phim-image" src={require('asset/img/heart.png')}/>
-                                            <span className="phim-mota">{ item.favorites } yêu thích</span>
+                                    <div className="col-5 pr-0">
+                                        <img src={item.images.thumbnail} alt={item.title}/>
+                                    </div>
+                                    <div className="col-7">
+                                        <div className="text-title">{ item.title }</div>
+                                        <div className="text-sub mt-1">{ item.short_description }</div>
+                                        <div className="row position-relative mt-2">
+                                            <div className="col-6 div-left movie-view">
+                                                <img className="phim-image" src={require('asset/img/vector.png')}/>
+                                                <span className="phim-mota">{ viewCount } lượt xem</span>
+                                            </div>
+                                            <div className="col-6 div-left movie-like">
+                                                <img className="phim-image" src={require('asset/img/heart.png')}/>
+                                                <span className="phim-mota">{ item.favorites } yêu thích</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
+                            </a>
                         </div>
                     )
                 })

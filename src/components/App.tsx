@@ -1,6 +1,7 @@
 import * as React from "react"
 import Home from 'components/Home'
 import Ribbon from 'components/Ribbon'
+import Play from 'components/Play'
 import {
     BrowserRouter, Route, Switch
 } from 'react-router-dom'
@@ -14,6 +15,7 @@ const App: React.FunctionComponent<PropInterface> = props => {
             <Switch>
                 <Route exact path="/" component={ Home } />
                 <Route path="/danh-muc/:id" component={ Ribbon } />
+                <Route path="/chi-tiet/:id" component={ Play } />
             </Switch>
         </BrowserRouter>
     );

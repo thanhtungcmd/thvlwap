@@ -23,6 +23,7 @@ export interface MovieItem {
     views: number,
     favorites: number,
     short_description: string,
+    slug: string,
     images: {
         thumbnail: string
     }

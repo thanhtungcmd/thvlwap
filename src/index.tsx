@@ -9,6 +9,7 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import "video.js/dist/video-js.css"
 import './asset/css/style.css'
 
 ReactDOM.render(

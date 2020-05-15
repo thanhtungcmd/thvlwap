@@ -17,6 +17,10 @@ app.get('/', (req, res) => {
 app.get('/danh-muc/:id', (req, res) => {
     return res.sendFile('./dist/index.html', {root: __dirname });
 });
+
+app.get('/chi-tiet/:id', (req, res) => {
+    return res.sendFile('./dist/index.html', {root: __dirname });
+});
 /*-----Frontend Area-----*/
 
 /*-----Backend Area-----*/
@@ -36,6 +40,20 @@ app.get('/backend/cm/ribbon/:id', async (req, res) => {
         qs: {
             page: req.query.page
         }
+    });
+    return res.send(data);
+});
+
+app.get('/backend/cm/detail/:id', async (req, res) => {
+    let data = await request({
+        url: 'https://api.thvli.vn/backend/cm/detail/'+ req.params.id
+    });
+    return res.send(data);
+});
+
+app.get('/backend/cm/season_by_id/:id', async (req, res) => {
+    let data = await request({
+        url: 'https://api.thvli.vn/backend/cm/season_by_id/'+ req.params.id
     });
     return res.send(data);
 });

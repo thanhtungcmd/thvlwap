@@ -87,22 +87,24 @@ const Home: React.FunctionComponent<PropsInterface> = props => {
                         let viewCount = (movie.views > 1000) ? Math.round(movie.views/1000) + 'K' : movie.views
                         return (
                             <div className="col-6 detail-1" key={keyMovie}>
-                                <div className="text-center">
-                                    <img src={movie.images.thumbnail} alt={movie.title}/>
-                                </div>
-                                <div className="phim-tieude">
-                                    {movie.title}
-                                </div>
-                                <div className="row position-relative">
-                                    <div className="col-6 div-left movie-view">
-                                        <img className="phim-image" src={require('asset/img/vector.png')}/>
-                                        <span className="phim-mota">{ viewCount } lượt xem</span>
+                                <a href={ '/chi-tiet/'+ movie.slug }>
+                                    <div className="text-center">
+                                        <img src={movie.images.thumbnail} alt={movie.title}/>
                                     </div>
-                                    <div className="col-6 div-left movie-like">
-                                        <img className="phim-image" src={require('asset/img/heart.png')}/>
-                                        <span className="phim-mota">{ movie.favorites } yêu thích</span>
+                                    <div className="phim-tieude">
+                                        {movie.title}
                                     </div>
-                                </div>
+                                    <div className="row position-relative">
+                                        <div className="col-6 div-left movie-view">
+                                            <img className="phim-image" src={require('asset/img/vector.png')}/>
+                                            <span className="phim-mota">{ viewCount } lượt xem</span>
+                                        </div>
+                                        <div className="col-6 div-left movie-like">
+                                            <img className="phim-image" src={require('asset/img/heart.png')}/>
+                                            <span className="phim-mota">{ movie.favorites } yêu thích</span>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
                         )
                     }

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["react"],
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
