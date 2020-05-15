@@ -43,6 +43,7 @@
     "local-storage": "^2.0.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
+    "mux.js": "^5.6.2",
     "popper.js": "^1.16.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -55,6 +56,9 @@
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
     "slick-carousel": "^1.8.1",
-    "video.js": "^7.7.6"
+    "video.js": "^7.7.6",
+    "videojs-contrib-hls": "^5.15.0",
+    "videojs-contrib-quality-levels": "^2.0.9",
+    "videojs-hls-quality-selector": "^1.1.1"
   }
 }

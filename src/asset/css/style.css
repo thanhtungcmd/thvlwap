@@ -27,7 +27,7 @@ img {
     width: 100%;
 }
 .header-box {
-    padding: 5px 0 10px 0;
+    padding: 5px 0 6px 0;
 }
 .header-1 {
     background: #0e0e0e;
@@ -41,7 +41,7 @@ img {
 
 .header-1-2 {
     color: #fff;
-    padding: 10px 10px 0px 0px;
+    padding: 7px 10px 0px 0px;
     text-align: center;
     font-family: ROBOTO-BOLD_1;
 }
@@ -164,6 +164,10 @@ img {
     background: #0e0e0e;
     padding-top: 30px;
     text-align: center;
+}
+
+.header-6 {
+    background: #0e0e0e;
 }
 
 .btn-login {
@@ -418,7 +422,6 @@ input[type=password] {
 }
 
 .video-js .vjs-control {
-    width: 3em;
     outline: none;
 }
 

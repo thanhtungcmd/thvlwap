@@ -85,7 +85,7 @@ class Ribbon extends React.Component<PropsInterface, {}> {
                     return (
                         <div className="col-12 mb-4" key={key}>
                             <a href={ '/chi-tiet/'+ item.slug }>
-                            <div className="row">
+                                <div className="row">
                                     <div className="col-5 pr-0">
                                         <img src={item.images.thumbnail} alt={item.title}/>
                                     </div>
@@ -103,7 +103,7 @@ class Ribbon extends React.Component<PropsInterface, {}> {
                                             </div>
                                         </div>
                                     </div>
-                            </div>
+                                </div>
                             </a>
                         </div>
                     )

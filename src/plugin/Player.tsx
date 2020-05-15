@@ -1,8 +1,13 @@
 // @ts-ignore
 import * as React from "react";
 import videojs from 'video.js'
+// @ts-ignore
+import qualitySelector from 'videojs-hls-quality-selector';
+// @ts-ignore
+import qualityLevel from 'videojs-contrib-quality-levels';
 
 class Player extends React.Component<{}, {}> {
+
     private player: videojs.Player;
     private videoNode: any;
 
@@ -11,15 +16,17 @@ class Player extends React.Component<{}, {}> {
     }
 
     componentDidMount() {
-        // instantiate Video.js
-        console.log(this.videoNode);
-        this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
-            console.log('onPlayerReady', this)
-            // this.disablePictureInPicture = true;
-        });
+        videojs.registerPlugin('qualityLevel', qualityLevel);
+        videojs.registerPlugin('hlsQualitySelector', qualitySelector);
+
         // @ts-ignore
-        this.player.disablepictureinpicture = true;
-        console.log(this.player);
+        this.player = videojs(this.videoNode, this.props);
+        // @ts-ignore
+        let qualityLevels = this.player.qualityLevels();
+        // @ts-ignore
+        this.player.hlsQualitySelector({
+            displayCurrentQuality: true,
+        });
     }
 
     componentWillUnmount() {
@@ -32,7 +39,7 @@ class Player extends React.Component<{}, {}> {
         return (
             <div>
                 <div data-vjs-player={true}>
-                    <video ref={ node => this.videoNode = node } className="video-js"/>
+                    <video ref={ node => this.videoNode = node } className="video-js vjs-16-9"/>
                 </div>
             </div>
         )
