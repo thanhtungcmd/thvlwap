@@ -1,12 +1,12 @@
 import * as React from "react"
-import Header from "plugin/Header";
-import StateInterface from "reducer/index.reducer.type";
+import {RibbonState} from "../reducer/ribbon.reducer.type";
+import StateInterface from "../reducer/index.reducer.type";
 import {bindActionCreators, Dispatch} from "redux";
 import * as RibbonAction from "action/ribbon.action";
 import * as MenuAction from "action/menu.action";
 import {connect} from "react-redux";
-import {useCallback, useEffect, useState} from "react";
-import {RibbonState} from "reducer/ribbon.reducer.type";
+import Header from "plugin/Header";
+import {useCallback} from "react";
 
 interface StatePropsInterface {
     ribbon?: RibbonState,
@@ -42,57 +42,46 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     }, dispatch)
 });
 
-const Ribbon: React.FunctionComponent<PropsInterface> = props => {
+class Ribbon extends React.Component<PropsInterface, {}> {
 
-    const [showLoading, setShowLoading] = useState(false);
-    const [page, setPage] = useState(1);
-
-    useEffect(() => {
-        props.actions.getRibbonDetailAction(props.match.params.id, 1);
-    }, [])
-
-    useEffect(() => {
-        if (typeof props.ribbon.page != "undefined") {
-            document.addEventListener('scroll', trackScrolling, true);
-            document.addEventListener('resize', trackScrolling, true);
-        }
-    }, [props.ribbon])
-
-    useEffect(() => {
-        setShowLoading(false);
-    }, [props.ribbon.items])
-
-    useEffect(() => {
-        if (typeof props.ribbon.name != "undefined") {
-            props.actions.changeTitleAction(props.ribbon.name);
-        }
-    }, [props.ribbon.name]);
-
-    const trackScrolling = useCallback( () => {
-        const wrappedElement = document.getElementById('container');
-        if ((wrappedElement.getBoundingClientRect().bottom - 1) <= window.innerHeight) {
-            if (!showLoading) {
-                setShowLoading(true);
-                setPage(page + 1)
-                console.log(page);
-                setTimeout(() => {
-                    // props.actions.ribbonLoadMoreAction(props.match.params.id, page + 1)
-                    testData(page + 1);
-                }, 2000)
-            }
-        }
-    }, [page])
-
-    const testData = (page: number) => {
-        props.actions.ribbonLoadMoreAction(props.match.params.id, page)
-        console.log(page);
+    constructor(props: PropsInterface) {
+        super(props);
+        this.trackScrolling = this.trackScrolling.bind(this)
     }
 
-    const renderRibbon = () => {
-        if (typeof props.ribbon.items != "undefined") {
+    componentDidMount() {
+        this.props.actions.getRibbonDetailAction(this.props.match.params.id, 1);
+
+        // Scroll
+        document.addEventListener('scroll', this.trackScrolling, false);
+        document.addEventListener('resize', this.trackScrolling, false);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('scroll', this.trackScrolling, false);
+        document.removeEventListener('resize', this.trackScrolling, false);
+    }
+
+    componentDidUpdate(prevProps: Readonly<PropsInterface>) {
+        if (typeof this.props.ribbon.name != "undefined") {
+            this.props.actions.changeTitleAction(this.props.ribbon.name);
+        }
+    }
+
+    trackScrolling() {
+        const wrappedElement = document.getElementById('container');
+        if ((wrappedElement.getBoundingClientRect().bottom - 1) <= window.innerHeight) {
+            setTimeout(() => {
+                this.props.actions.ribbonLoadMoreAction(this.props.match.params.id, this.props.ribbon.page + 1)
+            }, 1000);
+        }
+    }
+
+    renderRibbon () {
+        if (typeof this.props.ribbon.items != "undefined") {
             let listMovie;
-            if (props.ribbon.items.length > 0) {
-                listMovie = props.ribbon.items.map((item, key) => {
+            if (this.props.ribbon.items.length > 0) {
+                listMovie = this.props.ribbon.items.map((item, key) => {
                     let viewCount = (item.views > 1000) ? Math.round(item.views/1000) + 'K' : item.views
                     return (
                         <div className="col-12 mb-4" key={key}>
@@ -140,12 +129,14 @@ const Ribbon: React.FunctionComponent<PropsInterface> = props => {
         }
     }
 
-    return (
-        <div id="container">
-            <Header/>
-            { renderRibbon() }
-        </div>
-    )
+    render() {
+        return (
+            <div id="container">
+                <Header/>
+                { this.renderRibbon() }
+            </div>
+        )
+    }
 
 }
 
