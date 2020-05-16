@@ -50,12 +50,19 @@ const Header: React.FunctionComponent<PropsInterface> = props => {
         )
     }
 
+    const renderMenuOverLay = () => {
+        return (props.menu.show) ?
+            (<div className="menu-overlay" style={{ height: window.innerHeight }}
+                onClick={ handleToggleMenu }/>)
+            : '';
+    }
+
     return (
         <div className="container-fluid header-1">
             <div className="container">
                 <div className="row position-relative header-box">
                     <div className="col-1 header-1-1"
-                         onClick={ handleToggleMenu.bind(this) }>
+                         onClick={ handleToggleMenu }>
                         <div className="image-back hn-menu">
                             <img src={ require('asset/img/menu.png') } />
                         </div>
@@ -70,6 +77,7 @@ const Header: React.FunctionComponent<PropsInterface> = props => {
                             <img src={ require('asset/img/Search.png') } />
                         </div>
                     </div>
+                    { renderMenuOverLay() }
                     <Menu/>
                 </div>
             </div>

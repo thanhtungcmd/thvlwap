@@ -21,11 +21,15 @@ app.get('/danh-muc/:id', (req, res) => {
 app.get('/chi-tiet/:id', (req, res) => {
     return res.sendFile('./dist/index.html', {root: __dirname });
 });
+
+app.get('/trang/:id', (req, res) => {
+    return res.sendFile('./dist/index.html', {root: __dirname });
+});
 /*-----Frontend Area-----*/
 
 /*-----Backend Area-----*/
-app.get('/backend/cm/page/trang-chu', async (req, res) => {
-    let data = await request('https://api.thvli.vn/backend/cm/page/trang-chu');
+app.get('/backend/cm/page/:id', async (req, res) => {
+    let data = await request('https://api.thvli.vn/backend/cm/page/' + req.params.id);
     return res.send(data);
 });
 

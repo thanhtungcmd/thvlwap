@@ -36,24 +36,81 @@ const Menu: React.FunctionComponent<PropsInterface> = props => {
 
     const renderMenuView = () => {
         return props.menu.data.map((item, key) => {
-            return (
-                <li key={key}>
-                    <img className="menu-image" alt="menu-image"
-                         src={require('asset/img/home-run.png')}/>
-                    <a className="pl-3">{item.name}</a>
-                </li>
-            )
+            if (item.slug != 'trang-chu') {
+                let icon;
+                switch (item.slug) {
+                    case "truc-tuyen-zua0j":
+                        icon = (<img alt="icon" style={{top: 19}} src={require("../asset/img/video.png")}/>);
+                        break;
+
+                    case "tv-show-2":
+                        icon = (<img alt="icon" style={{top: 14}} src={require("../asset/img/television.png")}/>);
+                        break;
+
+                    case "phim-viet-nam":
+                        icon = (<img alt="icon" src={require("../asset/img/film.png")}/>);
+                        break;
+
+                    case "phim-nuoc-ngoai":
+                        icon = (<img alt="icon" src={require("../asset/img/film.png")}/>);
+                        break;
+
+                    case "thieu-nhi-2":
+                        icon = (<img alt="icon" src={require("../asset/img/kid.png")}/>);
+                        break;
+
+                    case "cai-luong":
+                        icon = (<img alt="icon" src={require("../asset/img/cailuong.png")}/>);
+                        break;
+
+                    case "ca-nhac-moi":
+                        icon = (<img alt="icon" src={require("../asset/img/music.png")}/>);
+                        break;
+                }
+                return (
+                    <li key={key}>
+                        <a href={"/trang/" + item.slug} className="menu-list-item">
+                            {icon}
+                            {item.name}
+                        </a>
+                    </li>
+                )
+            }
         });
     }
 
     const renderToggleMenu = () => {
-        return (props.menu.show) ? ' d-block' : ' d-none';
+        return (props.menu.show) ? ' active' : '';
     }
 
     return (
-        <div className={"hn-menu-box" + renderToggleMenu()}>
-            <ul>
+        <div className={"menu-content" + renderToggleMenu()} style={{ height: window.innerHeight }}>
+            <ul className="menu-list">
+                <li>
+                    <a href="/" className="menu-list-item menu-list-main">
+                        <img alt="icon" style={{ width: 40 }} src={ require("../asset/img/icon-avatar.png") }/>
+                        Đăng nhập
+                    </a>
+                </li>
+                <li>
+                    <a href="/" className="menu-list-item">
+                        <img alt="icon" style={{ top: 14 }} src={ require("../asset/img/home-run.png") }/>
+                        Trang chủ
+                    </a>
+                </li>
                 { renderMenuView() }
+                <li>
+                    <a href="/" className="menu-list-item menu-list-sub">
+                        <img alt="icon" style={{ top: 16 }} src={ require("../asset/img/dangkygoi.png") }/>
+                        Đăng ký gói cước
+                    </a>
+                </li>
+                <li>
+                    <a href="/" className="menu-list-item">
+                        <img alt="icon" style={{ top: 14 }} src={ require("../asset/img/flag.png") }/>
+                        Điều khoản dịch vụ
+                    </a>
+                </li>
             </ul>
         </div>
     )

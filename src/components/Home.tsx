@@ -20,7 +20,15 @@ interface DispatchPropsInterface {
     }
 }
 
-type PropsInterface = StatePropsInterface & DispatchPropsInterface
+interface ParamPropsInterface {
+    match: {
+        params: {
+            id: string
+        }
+    }
+}
+
+type PropsInterface = StatePropsInterface & DispatchPropsInterface & ParamPropsInterface
 
 const mapStateToProps = (state: StateInterface) => ({
     home: state.home,
@@ -36,13 +44,14 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 const Home: React.FunctionComponent<PropsInterface> = props => {
 
     useEffect(() => {
-        props.actions.getHomePageAction();
-        props.actions.changeTitleAction('');
+        if (typeof props.match.params.id == "undefined") {
+            props.actions.getHomePageAction();
+            props.actions.changeTitleAction('');
+        } else {
+            props.actions.getHomePageAction(props.match.params.id);
+            props.actions.changeTitleAction('');
+        }
     }, [])
-
-    useEffect(() => {
-        console.log(props.home);
-    })
 
     const renderBanner = () => {
         let settings = {
@@ -112,10 +121,10 @@ const Home: React.FunctionComponent<PropsInterface> = props => {
                 return (
                     <div className="container" key={key}>
                         <div className="row mb-2">
-                            <div className="col-6 div-left">
+                            <div className="col-8 div-left">
                                 <a href={'/danh-muc/' + item.id} className="input-a2 text-uppercase">{item.name}</a>
                             </div>
-                            <div className="col-6 div-right">
+                            <div className="col-4 div-right">
                                 <a href={'/danh-muc/' + item.id} className="input-a2">Tất cả &gt;</a>
                             </div>
                         </div>

@@ -14,6 +14,7 @@ const App: React.FunctionComponent<PropInterface> = props => {
         <BrowserRouter>
             <Switch>
                 <Route exact path="/" component={ Home } />
+                <Route path="/trang/:id" component={ Home } />
                 <Route path="/danh-muc/:id" component={ Ribbon } />
                 <Route path="/chi-tiet/:id" component={ Play } />
             </Switch>

@@ -5,8 +5,8 @@ export const ApiGetMenu = () => {
     return axios.get(link.LINK_MENU);
 }
 
-export const ApiGetHomePage = () => {
-    return axios.get(link.LINK_HOME_PAGE);
+export const ApiGetHomePage = (page: string) => {
+    return axios.get(link.LINK_HOME_PAGE + page);
 }
 
 export const ApiGetRibbonDetail = (id: string, page: number = 1) => {

@@ -192,6 +192,8 @@ img {
 .image-logo2 {
     width: 100px;
     margin: 0 auto;
+    color: #fff;
+    text-transform: uppercase;
 }
 
 .image-line {
@@ -442,6 +444,57 @@ input[type=password] {
 .play-sub {
     font-size: 13px;
     text-align: justify;
+}
+.menu-overlay {
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    background: rgba(4, 24, 39, 0.5);
+    z-index: 1;
+}
+.menu-content {
+    width: 70%;
+    background-size: 100%;
+    position: fixed;
+    z-index: 5;
+    left: -70%;
+    top: 0;
+    transition: all 0.2s ease 0.2s;
+    background: #151515;
+}
+.menu-content.active {
+    left: 0;
+}
+.menu-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: scroll;
+    min-height: 500px;
+}
+.menu-list li a {
+    padding: 14px 20px 14px 50px;
+    float: left;
+    width: 100%;
+    position: relative;
+    color: #fff !important;
+    text-transform: uppercase;
+}
+.menu-list li a img {
+    position: absolute;
+    left: 22px;
+    width: 18px;
+    top: 12px;
+}
+.menu-list .menu-list-main {
+    padding: 20px 20px 20px 75px;
+    font-weight: 600;
+    text-transform: none;
+    border-bottom: 1px solid #fff;
+}
+.menu-list-sub {
+    border-top: 1px solid #fff;
 }
 
 /*Video*/
