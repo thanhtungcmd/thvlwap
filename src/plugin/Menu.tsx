@@ -37,39 +37,47 @@ const Menu: React.FunctionComponent<PropsInterface> = props => {
     const renderMenuView = () => {
         return props.menu.data.map((item, key) => {
             if (item.slug != 'trang-chu') {
-                let icon;
+                let icon
+                let url
                 switch (item.slug) {
                     case "truc-tuyen-zua0j":
+                        url = '/live/thvl1-hd'
                         icon = (<img alt="icon" style={{top: 19}} src={require("../asset/img/video.png")}/>);
                         break;
 
                     case "tv-show-2":
+                        url = "/trang/" + item.slug
                         icon = (<img alt="icon" style={{top: 14}} src={require("../asset/img/television.png")}/>);
                         break;
 
                     case "phim-viet-nam":
+                        url = "/trang/" + item.slug
                         icon = (<img alt="icon" src={require("../asset/img/film.png")}/>);
                         break;
 
                     case "phim-nuoc-ngoai":
+                        url = "/trang/" + item.slug
                         icon = (<img alt="icon" src={require("../asset/img/film.png")}/>);
                         break;
 
                     case "thieu-nhi-2":
+                        url = "/trang/" + item.slug
                         icon = (<img alt="icon" src={require("../asset/img/kid.png")}/>);
                         break;
 
                     case "cai-luong":
+                        url = "/trang/" + item.slug
                         icon = (<img alt="icon" src={require("../asset/img/cailuong.png")}/>);
                         break;
 
                     case "ca-nhac-moi":
+                        url = "/trang/" + item.slug
                         icon = (<img alt="icon" src={require("../asset/img/music.png")}/>);
                         break;
                 }
                 return (
                     <li key={key}>
-                        <a href={"/trang/" + item.slug} className="menu-list-item">
+                        <a href={url} className="menu-list-item">
                             {icon}
                             {item.name}
                         </a>

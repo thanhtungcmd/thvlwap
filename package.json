@@ -35,6 +35,7 @@
     "@types/react-router-dom": "^5.1.4",
     "@types/react-slick": "^0.23.4",
     "@types/video.js": "^7.3.8",
+    "@videojs/http-streaming": "^1.13.3",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "cors": "^2.8.5",

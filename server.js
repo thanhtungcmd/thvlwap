@@ -25,6 +25,10 @@ app.get('/chi-tiet/:id', (req, res) => {
 app.get('/trang/:id', (req, res) => {
     return res.sendFile('./dist/index.html', {root: __dirname });
 });
+
+app.get('/live/:id', (req, res) => {
+    return res.sendFile('./dist/index.html', {root: __dirname });
+});
 /*-----Frontend Area-----*/
 
 /*-----Backend Area-----*/
