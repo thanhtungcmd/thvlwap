@@ -36,3 +36,12 @@ export const ApiGetSeason = (id: string) => {
 export const ApiGetRelate = (id: string) => {
     return axios.get(link.LINK_RELATE + id);
 }
+
+export const ApiGetEpgLive = (channel: string, date: string) => {
+    return axios.get(link.LINK_EPG, {
+        params: {
+            channel_id: channel,
+            schedule_date: date
+        }
+    })
+}

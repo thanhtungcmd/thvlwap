@@ -79,6 +79,17 @@ app.get('/backend/test.m3u8', async (req, res) => {
     });
     return res.send(data);
 });
+
+app.get('/backend/cm/epg', async (req, res) => {
+    let data = await request({
+        url: 'https://api.thvli.vn/backend/cm/epg/',
+        qs: {
+            channel_id: req.query.channel_id,
+            schedule_date: req.query.schedule_date
+        }
+    });
+    return res.send(data);
+});
 /*-----Backend Area-----*/
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))

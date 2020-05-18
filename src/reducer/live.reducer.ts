@@ -15,6 +15,12 @@ const liveReducer = (state: LiveState = {}, action: LIVE_ACTION) => {
                 data: action.data
             }
 
+        case "GET_EPG_LIVE":
+            return {
+                ...state,
+                epg: action.data.items
+            }
+
         default:
             return state
     }

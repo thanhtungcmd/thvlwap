@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import Header from "plugin/Header";
 import Player from "plugin/Player";
 import Slider from "react-slick";
+import * as moment from "moment";
 
 interface StatePropsInterface {
     live?: LiveState,
@@ -16,7 +17,8 @@ interface StatePropsInterface {
 interface DispatchPropsInterface {
     actions?: {
         getRibbonLiveAction: any,
-        getDetailLiveAction: any
+        getDetailLiveAction: any,
+        getEpgLiveAction: any
     }
 }
 
@@ -37,29 +39,63 @@ const mapStateToProps = (state: StateInterface) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     actions: bindActionCreators({
         getRibbonLiveAction: LiveAction.getRibbonLiveAction,
-        getDetailLiveAction: LiveAction.getDetailLiveAction
+        getDetailLiveAction: LiveAction.getDetailLiveAction,
+        getEpgLiveAction: LiveAction.getEpgLiveAction
     }, dispatch)
 });
 
-class Live extends React.Component<PropsInterface, {}> {
+interface CurrentState {
+    live: string
+}
+
+class Live extends React.Component<PropsInterface, CurrentState> {
 
     constructor(props: PropsInterface) {
         super(props);
+        this.state = {
+            live: null
+        }
     }
 
     componentDidMount() {
-        this.props.actions.getRibbonLiveAction();
-        this.props.actions.getDetailLiveAction();
+        this.props.actions.getDetailLiveAction(this.props.match.params.id);
+    }
+
+    componentDidUpdate(prevProps: Readonly<PropsInterface>) {
+        if (typeof this.props.live.data != "undefined" && this.state.live == null) {
+            this.setState({
+                live: this.props.live.data.play_info.data.hls_link_play
+            })
+        }
+        if (typeof this.props.live.ribbon == "undefined" && typeof this.props.live.data != "undefined") {
+            this.props.actions.getRibbonLiveAction();
+        }
+        if (typeof this.props.live.epg == "undefined" && typeof this.props.live.data != "undefined"
+            && typeof this.props.live.ribbon != "undefined") {
+            this.props.actions.getEpgLiveAction(this.props.live.data.id, moment().format('YYYY-MM-DD'))
+        }
+        if (typeof this.props.live.epg != "undefined") {
+            let currentChannel = document.getElementById("live-active");
+            currentChannel.scrollIntoView();
+        }
+    }
+
+    handleChannel(channel: string) {
+        let data = this.state.live + channel;
+        console.log(data);
+        this.setState({
+            live: data
+        })
     }
 
     renderPlayer () {
         if (typeof this.props.live.data != "undefined") {
-            if (typeof this.props.live.data.play_info.data != "undefined") {
+            if (typeof this.props.live.data.play_info.data != "undefined" && this.state.live != null) {
                 const videoJsOptions = {
                     // autoplay: true,
                     controls: true,
                     sources: [{
-                        src: this.props.live.data.play_info.data.hls_link_play,
+                        src: this.state.live,
                         type: 'application/x-mpegURL'
                     }],
                     controlBar: {
@@ -96,7 +132,9 @@ class Live extends React.Component<PropsInterface, {}> {
             let listBanner = this.props.live.ribbon.map((item, key) => {
                 return (
                     <div className="pl-2 pr-2" key={key}>
-                        <img src={item.images.thumbnail} alt={item.slug}/>
+                        <a href={'/live/' + item.slug}>
+                            <img src={item.images.thumbnail} alt={item.slug}/>
+                        </a>
                     </div>
                 );
             })
@@ -117,12 +155,103 @@ class Live extends React.Component<PropsInterface, {}> {
         }
     }
 
+    renderEpg() {
+        return (
+            <div className="container-fluid header-6 pr-0 pl-0 text-white">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12 mt-3 mb-3">
+                            <div className="font-weight-bold">Lịch phát sóng</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    renderEpgList() {
+        if (typeof this.props.live.epg != "undefined") {
+            let listMovie;
+            if (this.props.live.epg.length > 0) {
+                let currentTime: number = parseInt(moment().format('X'));
+                listMovie = this.props.live.epg.map((item, key) => {
+                    if (currentTime >= item.start_at && currentTime <= item.end_at) {
+                        return (
+                            <div id="live-active" className="col-12 mb-4" key={key}>
+                                <div onClick={ this.handleChannel.bind(this, item.link_play) }>
+                                    <div className="row">
+                                        <div className="col-4 pr-0">
+                                            {
+                                                (item.images.thumbnail != '')
+                                                    ? (<img src={item.images.thumbnail} alt={item.title}/>)
+                                                    : (<img src={this.props.live.data.images.thumbnail} alt={item.title}/>)
+                                            }
+                                        </div>
+                                        <div className="col-8 position-relative">
+                                            <div className="text-title">{item.title}</div>
+                                            <div className="text-sub mt-1">{ moment.unix(item.start_at).format("HH:mm") }</div>
+                                            <div className="live-icon">
+                                                <img src={ require('asset/img/icon-live.png') } />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    } else {
+                        return (
+                            <div className="col-12 mb-4" key={key}>
+                                <div onClick={ this.handleChannel.bind(this, item.link_play) }>
+                                    <div className="row">
+                                        <div className="col-4 pr-0">
+                                            {
+                                                (item.images.thumbnail != '')
+                                                    ? (<img src={item.images.thumbnail} alt={item.title}/>)
+                                                    : (<img src={this.props.live.data.images.thumbnail} alt={item.title}/>)
+                                            }
+                                        </div>
+                                        <div className="col-8">
+                                            <div className="text-title">{item.title}</div>
+                                            <div className="text-sub mt-1">{ moment.unix(item.start_at).format("HH:mm") }</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    }
+                })
+            }
+
+            const height = document.getElementById('live-fix').clientHeight;
+
+            return (
+                <div className="container-fluid pr-0 pl-0 text-white" style={{
+                    marginTop: height,
+                    height: window.innerHeight - height,
+                    overflow: "scroll"
+                }}>
+                    <div className="container">
+                        <div>
+                            <div className="row">
+                                {listMovie}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+    }
+
     render() {
         return (
             <div>
-                <Header/>
-                { this.renderPlayer() }
-                { this.renderChannel() }
+                <div id="live-fix" className="live-fix">
+                    <Header/>
+                    { this.renderPlayer() }
+                    { this.renderChannel() }
+                    { this.renderEpg() }
+                </div>
+                { this.renderEpgList() }
             </div>
         )
     }

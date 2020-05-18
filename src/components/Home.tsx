@@ -1,7 +1,7 @@
 import * as React from "react"
 import Header from "plugin/Header";
-import {HomeState} from "../reducer/home.reducer.type";
-import StateInterface from "../reducer/index.reducer.type";
+import {HomeState} from "reducer/home.reducer.type";
+import StateInterface from "reducer/index.reducer.type";
 import {bindActionCreators, Dispatch} from "redux";
 import * as HomeAction from "action/home.action";
 import {connect} from "react-redux";
@@ -68,7 +68,9 @@ const Home: React.FunctionComponent<PropsInterface> = props => {
         let listBanner = props.home.banner.map((item, key) => {
             return (
                 <div key={key}>
-                    <img src={item.images.banner} alt={item.slug}/>
+                    <a href={ '/chi-tiet/'+ item.slug }>
+                        <img src={item.images.banner} alt={item.slug}/>
+                    </a>
                 </div>
             );
         })

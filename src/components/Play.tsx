@@ -93,7 +93,7 @@ class Play extends React.Component<PropsInterface, {}> {
     renderTypeShow() {
         if (typeof this.props.play.data.default_episode.play_info != "undefined") {
             const videoJsOptions = {
-                // autoplay: true,
+                autoplay: true,
                 controls: true,
                 sources: [{
                     src: this.props.play.data.default_episode.play_info.data.hls_link_play,
@@ -121,7 +121,7 @@ class Play extends React.Component<PropsInterface, {}> {
     renderTypeMovie () {
         if (typeof this.props.play.data.play_info.data != "undefined") {
             const videoJsOptions = {
-                // autoplay: true,
+                autoplay: true,
                 controls: true,
                 sources: [{
                     src: this.props.play.data.play_info.data.hls_link_play,

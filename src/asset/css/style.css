@@ -353,7 +353,7 @@ input[type=password] {
     position: fixed;
     background: rgba(4, 24, 39, 0.5);
     display: none;
-    z-index: 1;
+    z-index: 5;
 }
 
 .hn-menu-box {
@@ -451,7 +451,7 @@ input[type=password] {
     top: 0;
     position: fixed;
     background: rgba(4, 24, 39, 0.5);
-    z-index: 1;
+    z-index: 5;
 }
 .menu-content {
     width: 70%;
@@ -499,6 +499,18 @@ input[type=password] {
 .live-slider {
     width: 85%;
     margin: 0 auto;
+}
+.live-fix {
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    top: 0;
+}
+.live-icon {
+    position: absolute;
+    width: 40px;
+    right: 20px;
+    top: 30px;
 }
 
 /*Video*/

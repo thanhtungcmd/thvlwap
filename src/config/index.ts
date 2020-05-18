@@ -5,3 +5,4 @@ export const LINK_RIBBON_DETAIL = DOMAIN_API + '/backend/cm/ribbon/';
 export const LINK_PLAY_DETAIL = DOMAIN_API + '/backend/cm/detail/';
 export const LINK_SEASON = DOMAIN_API + '/backend/cm/season_by_id/';
 export const LINK_RELATE = DOMAIN_API + '/backend/cm/related/';
+export const LINK_EPG = DOMAIN_API + '/backend/cm/epg/';
