@@ -6,7 +6,7 @@ const liveReducer = (state: LiveState = {}, action: LIVE_ACTION) => {
         case "GET_RIBBON_LIVE":
             return {
                 ...state,
-                ribbon: action.data
+                ribbon: action.data.items
             }
 
         case "GET_DETAIL_LIVE":

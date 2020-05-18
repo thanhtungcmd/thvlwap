@@ -72,6 +72,13 @@ app.get('/backend/cm/related/:id', async (req, res) => {
     });
     return res.send(data);
 });
+
+app.get('/backend/test.m3u8', async (req, res) => {
+    let data = await request({
+        url: 'https://live2.thvli.vn/d8d5f95e7e16fe911168281e91004de31589647550/live/thvl1hd.m3u8'
+    });
+    return res.send(data);
+});
 /*-----Backend Area-----*/
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))

@@ -392,7 +392,7 @@ input[type=password] {
     padding-left: 0px;
     text-align: right;
 }
-.slick-slide img {
+.banner-box .slick-slide img {
     min-height: 210px;
 }
 .text-title {
@@ -495,6 +495,10 @@ input[type=password] {
 }
 .menu-list-sub {
     border-top: 1px solid #fff;
+}
+.live-slider {
+    width: 85%;
+    margin: 0 auto;
 }
 
 /*Video*/

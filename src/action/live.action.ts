@@ -2,7 +2,7 @@ import * as types from 'action/live.action.type'
 import { Dispatch } from "redux"
 import {ApiGetPlay, ApiGetRibbonDetail} from "api/index.api"
 
-export const getRibbonLiveAction = (id: string = "a6ccbdff-5688-4b25-9989-5ce872603b0a", page: number = 1) => {
+export const getRibbonLiveAction = (id: string = "a6ccbdff-5688-4b25-9989-5ce872603b0a", page: number = 0) => {
     return async (dispatch: Dispatch) => {
         let response = await ApiGetRibbonDetail(id, page);
         if (response.status == 200) {

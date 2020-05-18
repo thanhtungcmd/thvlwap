@@ -74,7 +74,7 @@ const Home: React.FunctionComponent<PropsInterface> = props => {
         })
 
         return (
-            <div className="container-fluid header-3 pr-0 pl-0 overflow-hidden">
+            <div className="container-fluid banner-box header-3 pr-0 pl-0 overflow-hidden">
                 <div className="container pr-0 pl-0">
                 <div className="row">
                     <div className="col-12">

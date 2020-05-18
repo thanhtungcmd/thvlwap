@@ -7,6 +7,7 @@ import * as LiveAction from "action/live.action";
 import {connect} from "react-redux";
 import Header from "plugin/Header";
 import Player from "plugin/Player";
+import Slider from "react-slick";
 
 interface StatePropsInterface {
     live?: LiveState,
@@ -81,11 +82,47 @@ class Live extends React.Component<PropsInterface, {}> {
         }
     }
 
+    renderChannel() {
+        if (typeof this.props.live.ribbon != "undefined") {
+            let settings = {
+                dots: false,
+                arrows: true,
+                infinite: false,
+                speed: 500,
+                slidesToShow: 3,
+                slidesToScroll: 1
+            };
+
+            let listBanner = this.props.live.ribbon.map((item, key) => {
+                return (
+                    <div className="pl-2 pr-2" key={key}>
+                        <img src={item.images.thumbnail} alt={item.slug}/>
+                    </div>
+                );
+            })
+
+            return (
+                <div className="container-fluid header-3 pr-0 pl-0 overflow-hidden">
+                    <div className="container pr-0 pl-0">
+                        <div className="row">
+                            <div className="col-12 mt-3">
+                                <Slider className="live-slider" {...settings}>
+                                    {listBanner}
+                                </Slider>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+    }
+
     render() {
         return (
             <div>
                 <Header/>
                 { this.renderPlayer() }
+                { this.renderChannel() }
             </div>
         )
     }
