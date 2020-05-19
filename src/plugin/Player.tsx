@@ -29,6 +29,14 @@ class Player extends React.Component<{}, {}> {
         });
     }
 
+    componentDidUpdate(prevProps: Readonly<{}>) {
+        // @ts-ignore
+        if (this.props.update_detect) {
+            // @ts-ignore
+            this.player.src(this.props.sources[0]);
+        }
+    }
+
     componentWillUnmount() {
         if (this.player) {
             this.player.dispose()

@@ -192,10 +192,14 @@ img {
 .image-logo2 {
     width: 100px;
     margin: 0 auto;
+}
+.logo2-title {
+    height: 37px;
+    margin: 0 auto;
     color: #fff;
     text-transform: uppercase;
+    padding-top: 5px;
 }
-
 .image-line {
     width: 100%;
     margin: 0 auto;
@@ -257,6 +261,21 @@ img {
 }
 
 input[type=email] {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #ffffff;
+    background-clip: padding-box;
+    border: 1px solid #363636;
+    border-radius: .25rem;
+    background-color: #363636;
+}
+
+input[type=text] {
     display: block;
     width: 100%;
     height: calc(1.5em + .75rem + 2px);
@@ -511,6 +530,17 @@ input[type=password] {
     width: 40px;
     right: 20px;
     top: 30px;
+}
+.register-header {
+    background: #03318f;
+    color: #fff;
+}
+.register-body {
+    background: #252525;
+    color: #fff
+}
+.register-card {
+    border: none;
 }
 
 /*Video*/

@@ -3,6 +3,8 @@ import Home from 'components/Home'
 import Ribbon from 'components/Ribbon'
 import Play from 'components/Play'
 import Live from 'components/Live'
+import Login from 'components/Login'
+import Register from "components/Register";
 import {
     BrowserRouter, Route, Switch
 } from 'react-router-dom'
@@ -19,6 +21,8 @@ const App: React.FunctionComponent<PropInterface> = props => {
                 <Route path="/danh-muc/:id" component={ Ribbon } />
                 <Route path="/chi-tiet/:id" component={ Play } />
                 <Route path="/live/:id" component={ Live } />
+                <Route exact path="/dang-nhap" component={ Login } />
+                <Route exact path="/dang-ky" component={ Register } />
             </Switch>
         </BrowserRouter>
     );

@@ -37,7 +37,7 @@ const Header: React.FunctionComponent<PropsInterface> = props => {
     const renderLogo = () => {
         if (typeof props.menu.title == "string" && props.menu.title.length > 0) {
             return (
-                <div className="image-logo2">
+                <div className="logo2-title">
                     { props.menu.title }
                 </div>
             )
@@ -45,7 +45,7 @@ const Header: React.FunctionComponent<PropsInterface> = props => {
 
         return (
             <div className="image-logo2">
-                <img src={ require('asset/img/logo.png') } />
+                <img alt="logo" src={ require('asset/img/logo.png') } />
             </div>
         )
     }

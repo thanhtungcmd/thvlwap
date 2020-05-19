@@ -9,6 +9,7 @@ import Header from "plugin/Header";
 import Player from "plugin/Player";
 import Slider from "react-slick";
 import * as moment from "moment";
+import videojs from "video.js";
 
 interface StatePropsInterface {
     live?: LiveState,
@@ -45,7 +46,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 });
 
 interface CurrentState {
-    live: string
+    live: string,
+    update_detect: boolean,
 }
 
 class Live extends React.Component<PropsInterface, CurrentState> {
@@ -53,7 +55,8 @@ class Live extends React.Component<PropsInterface, CurrentState> {
     constructor(props: PropsInterface) {
         super(props);
         this.state = {
-            live: null
+            live: null,
+            update_detect: false
         }
     }
 
@@ -80,19 +83,19 @@ class Live extends React.Component<PropsInterface, CurrentState> {
         }
     }
 
-    handleChannel(channel: string) {
-        let data = this.state.live + channel;
-        console.log(data);
+    handleChannel(channel: any) {
         this.setState({
-            live: data
-        })
+            live: channel,
+            update_detect: true
+        });
     }
 
     renderPlayer () {
         if (typeof this.props.live.data != "undefined") {
             if (typeof this.props.live.data.play_info.data != "undefined" && this.state.live != null) {
+                console.log(123);
                 const videoJsOptions = {
-                    // autoplay: true,
+                    autoplay: true,
                     controls: true,
                     sources: [{
                         src: this.state.live,
@@ -100,7 +103,8 @@ class Live extends React.Component<PropsInterface, CurrentState> {
                     }],
                     controlBar: {
                         pictureInPictureToggle: false
-                    }
+                    },
+                    update_detect: this.state.update_detect
                 }
 
                 return (
@@ -108,7 +112,7 @@ class Live extends React.Component<PropsInterface, CurrentState> {
                         <div className="container pr-0 pl-0">
                             <div className="row">
                                 <div className="col-12">
-                                    <Player {...videoJsOptions}/>
+                                    <Player {...videoJsOptions} />
                                 </div>
                             </div>
                         </div>

@@ -1,11 +1,16 @@
 const express = require('express');
 const cors = require('cors')
 const request = require('request-promise');
+const bodyParser = require('body-parser')
 
 const app = express()
 const port = 3000
 
 app.use(cors());
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+}));
 
 /*-----Frontend Area-----*/
 app.use(express.static(__dirname + '/dist'));
@@ -27,6 +32,14 @@ app.get('/trang/:id', (req, res) => {
 });
 
 app.get('/live/:id', (req, res) => {
+    return res.sendFile('./dist/index.html', {root: __dirname });
+});
+
+app.get('/dang-nhap', (req, res) => {
+    return res.sendFile('./dist/index.html', {root: __dirname });
+});
+
+app.get('/dang-ky', (req, res) => {
     return res.sendFile('./dist/index.html', {root: __dirname });
 });
 /*-----Frontend Area-----*/
@@ -90,6 +103,28 @@ app.get('/backend/cm/epg', async (req, res) => {
     });
     return res.send(data);
 });
+
+app.post('/backend/cas/register/email', async (req, res) => {
+    try {
+        let data = await request.post({
+            url: 'https://api.thvli.vn/backend/cas/register/email',
+            form: {
+                "email": req.body.email,
+                "first_name": req.body.name,
+                "last_name": req.body.name,
+                "password": req.body.password,
+                "dob": "",
+                "gender": 0,
+                "phone_number": "",
+                "g_recaptcha_response": ""
+            }
+        });
+        return res.send(data);
+    } catch (e) {
+        res.status(400);
+        return res.send(e.error);
+    }
+})
 /*-----Backend Area-----*/
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
