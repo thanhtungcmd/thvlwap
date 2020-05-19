@@ -45,3 +45,11 @@ export const ApiGetEpgLive = (channel: string, date: string) => {
         }
     })
 }
+
+export const ApiInfoUser = (token: string) => {
+    return axios.get(link.LINK_PROFILE, {
+        headers: {
+            "authorization": token
+        }
+    })
+}

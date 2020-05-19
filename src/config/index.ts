@@ -7,3 +7,9 @@ export const LINK_SEASON = DOMAIN_API + '/backend/cm/season_by_id/';
 export const LINK_RELATE = DOMAIN_API + '/backend/cm/related/';
 export const LINK_EPG = DOMAIN_API + '/backend/cm/epg/';
 export const LINK_REGISTER = DOMAIN_API + '/backend/cas/register/email';
+export const LINK_LOGIN = DOMAIN_API + '/backend/cas/login/email';
+export const LINK_PROFILE = DOMAIN_API + '/backend/cas/profile';
+
+export const MOBIFONE_PATH = 'http://m.ibolero.vn';
+// export const MOBIFONE_AUTH = "http://m.ibolero.vn/thvl/login";
+// export const MOBIFONE_STD = "http://m.ibolero.vn/service/mobile";

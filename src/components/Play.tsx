@@ -217,7 +217,7 @@ class Play extends React.Component<PropsInterface, {}> {
                         <a href={'/chi-tiet/' + item.id}>
                             <div className="row">
                                 <div className="col-5 pr-0">
-                                    <img src={item.images.thumbnail} alt={item.title}/>
+                                    <img src={ (typeof item.images != "undefined") ? item.images.thumbnail: ''} alt={item.title}/>
                                 </div>
                                 <div className="col-7">
                                     <div className="text-title">{item.title}</div>

@@ -4,27 +4,34 @@ import { bindActionCreators, Dispatch } from "redux"
 import { connect } from "react-redux"
 import StateInterface from "reducer/index.reducer.type"
 import * as MenuAction from "action/menu.action"
+import * as AuthAction from "action/auth.action"
 import { MenuState } from "reducer/menu.reducer.type"
+import { AuthState } from "reducer/auth.reducer.type"
+import * as ls from "local-storage";
 
 interface DispatchPropsInterface {
     actions?: {
         getMenuAction: any,
+        getInfoAction: any
     }
 }
 
 interface StatePropsInterface {
-    menu?: MenuState
+    menu?: MenuState,
+    auth?: AuthState
 }
 
 type PropsInterface = StatePropsInterface & DispatchPropsInterface
 
 const mapStateToProps = (state: StateInterface) => ({
     menu: state.menu,
+    auth: state.auth
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     actions: bindActionCreators({
-        getMenuAction: MenuAction.getMenuAction
+        getMenuAction: MenuAction.getMenuAction,
+        getInfoAction: AuthAction.getInfoAction
     }, dispatch)
 });
 
@@ -32,6 +39,10 @@ const Menu: React.FunctionComponent<PropsInterface> = props => {
 
     useEffect(() => {
         props.actions.getMenuAction();
+        let token = ls.get<string>('token');
+        if (typeof token == "string") {
+            props.actions.getInfoAction(token);
+        }
     }, [])
 
     const renderMenuView = () => {
@@ -91,15 +102,41 @@ const Menu: React.FunctionComponent<PropsInterface> = props => {
         return (props.menu.show) ? ' active' : '';
     }
 
+    let renderUser;
+    let mobifone_sdt = ls.get<string>('mobifone_sdt');
+    if (typeof props.auth.profile != "undefined") {
+        renderUser = (
+            <li>
+                <a href="/" className="menu-list-item menu-list-main">
+                    <img alt="icon" style={{ width: 40 }} src={ require("../asset/img/icon-avatar.png") }/>
+                    {props.auth.profile.first_name}
+                </a>
+            </li>
+        )
+    } else if (typeof mobifone_sdt == "string") {
+        renderUser = (
+            <li>
+                <a href="/" className="menu-list-item menu-list-main">
+                    <img alt="icon" style={{ width: 40 }} src={ require("../asset/img/icon-avatar.png") }/>
+                    { mobifone_sdt }
+                </a>
+            </li>
+        )
+    } else {
+        renderUser = (
+            <li>
+                <a href="/dang-nhap" className="menu-list-item menu-list-main">
+                    <img alt="icon" style={{ width: 40 }} src={ require("../asset/img/icon-avatar.png") }/>
+                    Đăng nhập
+                </a>
+            </li>
+        )
+    }
+
     return (
         <div className={"menu-content" + renderToggleMenu()} style={{ height: window.innerHeight }}>
             <ul className="menu-list">
-                <li>
-                    <a href="/" className="menu-list-item menu-list-main">
-                        <img alt="icon" style={{ width: 40 }} src={ require("../asset/img/icon-avatar.png") }/>
-                        Đăng nhập
-                    </a>
-                </li>
+                { renderUser }
                 <li>
                     <a href="/" className="menu-list-item">
                         <img alt="icon" style={{ top: 14 }} src={ require("../asset/img/home-run.png") }/>

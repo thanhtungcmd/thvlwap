@@ -124,7 +124,33 @@ app.post('/backend/cas/register/email', async (req, res) => {
         res.status(400);
         return res.send(e.error);
     }
-})
+});
+
+app.post('/backend/cas/login/email', async (req, res) => {
+    try {
+        let data = await request.post({
+            url: 'https://api.thvli.vn/backend/cas/login/email',
+            form: {
+                "email": req.body.email,
+                "password": req.body.password,
+            }
+        });
+        return res.send(data);
+    } catch (e) {
+        res.status(400);
+        return res.send(e.error);
+    }
+});
+
+app.get('/backend/cas/profile', async (req, res) => {
+    let data = await request.get({
+        url: 'https://api.thvli.vn/backend/cas/profile',
+        headers: {
+            "authorization": req.get('authorization'),
+        }
+    });
+    return res.send(data);
+});
 /*-----Backend Area-----*/
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
