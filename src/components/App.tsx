@@ -5,6 +5,7 @@ import Play from 'components/Play'
 import Live from 'components/Live'
 import Login from 'components/Login'
 import Register from "components/Register";
+import Package from "components/Package";
 import {
     BrowserRouter, Route, Switch
 } from 'react-router-dom'
@@ -62,6 +63,7 @@ const App: React.FunctionComponent<PropInterface> = props => {
                 <Route path="/live/:id" component={ Live } />
                 <Route exact path="/dang-nhap" component={ Login } />
                 <Route exact path="/dang-ky" component={ Register } />
+                <Route exact path="/goi-cuoc" component={ Package } />
             </Switch>
         </BrowserRouter>
     );

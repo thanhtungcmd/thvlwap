@@ -542,6 +542,52 @@ input[type=password] {
 .register-card {
     border: none;
 }
+.package-title {
+    text-transform: uppercase;
+    color: #f6db1c;
+    font-size: 13px;
+    font-weight: bold;
+}
+.package-price {
+    border: 1px solid #f6db1c;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 5px 10px;
+    display: inline-block;
+    border-radius: 6px;
+    margin-top: 5px;
+}
+.package-price span {
+    color: #f6db1c;
+}
+.package-sub {
+    font-size: 10px;
+    margin-top: 8px;
+}
+@media only screen and (min-width: 321px) {
+    .package-title {
+        text-transform: uppercase;
+        color: #f6db1c;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .package-price {
+        border: 1px solid #f6db1c;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 5px 15px;
+        display: inline-block;
+        border-radius: 6px;
+        margin-top: 5px;
+    }
+    .package-price span {
+        color: #f6db1c;
+    }
+    .package-sub {
+        font-size: 12px;
+        margin-top: 8px;
+    }
+}
 
 /*Video*/
 .video-js {

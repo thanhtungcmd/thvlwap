@@ -42,6 +42,10 @@ app.get('/dang-nhap', (req, res) => {
 app.get('/dang-ky', (req, res) => {
     return res.sendFile('./dist/index.html', {root: __dirname });
 });
+
+app.get('/goi-cuoc', (req, res) => {
+    return res.sendFile('./dist/index.html', {root: __dirname });
+});
 /*-----Frontend Area-----*/
 
 /*-----Backend Area-----*/
