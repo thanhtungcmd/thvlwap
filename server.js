@@ -155,6 +155,24 @@ app.get('/backend/cas/profile', async (req, res) => {
     });
     return res.send(data);
 });
+
+app.post('/service/token', async  (req, res) => {
+    let data = await request.post({
+        url: "http://45.125.208.58:5901/oauth/token",
+        headers: {
+            "Authorization": 'Basic dGVzdGp3dGNsaWVudGlkOlhZN2ttem9OemwxMDA=',
+        },
+        form: {
+            'grant_type': "password",
+            'password': "jwtpass",
+            'username': "john.doe"
+        }
+    })
+
+    return res.send(data);
+});
+
+app.post('')
 /*-----Backend Area-----*/
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))

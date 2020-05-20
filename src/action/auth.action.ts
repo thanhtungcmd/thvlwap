@@ -3,6 +3,12 @@ import { Dispatch } from "redux"
 import { ApiInfoUser } from "api/index.api"
 import * as ls from "local-storage";
 
+export const getMobifone = (phone: string) => {
+    return async (dispatch: Dispatch) => {
+
+    }
+}
+
 export const getInfoAction = (token: string) => {
     return async (dispatch: Dispatch) => {
         let response = await ApiInfoUser(token);
