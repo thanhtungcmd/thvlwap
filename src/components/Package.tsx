@@ -5,6 +5,7 @@ import * as MenuAction from "action/menu.action";
 import {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import StateInterface from "../reducer/index.reducer.type";
+import * as ls from "local-storage";
 
 interface DispatchPropsInterface {
     actions?: {
@@ -51,13 +52,24 @@ const Package: React.FunctionComponent<PropsInterface> = props => {
     }, [])
 
     const renderItem = () => {
+
         return packageList.map((item, key) => {
+            let checked;
+            let mobifone_package = ls.get<string>('mobifone_package');
+            if (mobifone_package == item.code) {
+                checked = (
+                    <div className="package-check">
+                        <img style={{ width: 50 }} src={ require('asset/img/check-2.png') } alt="package"/>
+                    </div>
+                )
+            }
             return (
                 <div className="row pb-5" key={key}>
-                    <div className="col-5 pr-0">
-                        <img src={ require('asset/img/package-'+ (key + 1) +'.png') } alt="package"/>
+                    <div className="col-5 position-relative">
+                        <img id={"package-img-" + (key + 1)} src={ require('asset/img/package-'+ (key + 1) +'.png') } alt="package"/>
+                        { checked }
                     </div>
-                    <div className="col-7">
+                    <div className="col-7 pl-0">
                         <div className="package-title">{ item.name }</div>
                         <div className="package-price">
                             Soạn <span>{ item.syntax }</span> gửi <span>{ item.board }</span>
