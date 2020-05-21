@@ -60,7 +60,7 @@ const App: React.FunctionComponent<PropInterface> = props => {
                             }
                         }).then((res) => {
                             if (res.data != '') {
-                                ls.set<string>('mobifone_sdt', res.data);
+                                ls.set<string>('mobifone_sdt', res.data.toString());
                                 loadPackage()
                                 setLoadingDone(true);
                             }
@@ -82,7 +82,8 @@ const App: React.FunctionComponent<PropInterface> = props => {
                     msisdn: mobifone_sdt,
                     token: mobifone_token
                 }).then((res) => {
-                    ls.set<string>('mobifone_package', res.data.package.service_code);
+                    console.log(res.data.package[0].service_code);
+                    ls.set<string>('mobifone_package', res.data.package[0].service_code);
                 }).catch(() => {
                     ls.remove('mobifone_sdt');
                     ls.remove('mobifone_token');

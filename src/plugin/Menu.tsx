@@ -102,41 +102,43 @@ const Menu: React.FunctionComponent<PropsInterface> = props => {
         return (props.menu.show) ? ' active' : '';
     }
 
-    let renderUser;
-    let mobifone_sdt = ls.get<string>('mobifone_sdt');
-    if (typeof props.auth.profile != "undefined") {
-        renderUser = (
-            <li>
-                <a href="/" className="menu-list-item menu-list-main">
-                    <img alt="icon" style={{ width: 40 }} src={ require("../asset/img/icon-avatar.png") }/>
-                    {props.auth.profile.first_name}
-                </a>
-            </li>
-        )
-    } else if (typeof mobifone_sdt == "string") {
-        renderUser = (
-            <li>
-                <a href="/" className="menu-list-item menu-list-main">
-                    <img alt="icon" style={{ width: 40 }} src={ require("../asset/img/icon-avatar.png") }/>
-                    { mobifone_sdt }
-                </a>
-            </li>
-        )
-    } else {
-        renderUser = (
-            <li>
-                <a href="/dang-nhap" className="menu-list-item menu-list-main">
-                    <img alt="icon" style={{ width: 40 }} src={ require("../asset/img/icon-avatar.png") }/>
-                    Đăng nhập
-                </a>
-            </li>
-        )
+    const renderUser = () => {
+        let mobifone_sdt = ls.get<string>('mobifone_sdt');
+        if (typeof props.auth.profile != "undefined") {
+            return (
+                <li>
+                    <a href="/" className="menu-list-item menu-list-main">
+                        <img alt="icon" style={{ width: 40 }} src={ require("../asset/img/icon-avatar.png") }/>
+                        {props.auth.profile.first_name}
+                    </a>
+                </li>
+            )
+        } else if (typeof mobifone_sdt == "string") {
+            return (
+                <li>
+                    <a href="/" className="menu-list-item menu-list-main">
+                        <img alt="icon" style={{ width: 40 }} src={ require("../asset/img/icon-avatar.png") }/>
+                        { mobifone_sdt }
+                    </a>
+                </li>
+            )
+        } else {
+            return (
+                <li>
+                    <a href="/dang-nhap" className="menu-list-item menu-list-main">
+                        <img alt="icon" style={{ width: 40 }} src={ require("../asset/img/icon-avatar.png") }/>
+                        Đăng nhập
+                    </a>
+                </li>
+            )
+        }
     }
+
 
     return (
         <div className={"menu-content" + renderToggleMenu()} style={{ height: window.innerHeight }}>
             <ul className="menu-list">
-                { renderUser }
+                { renderUser() }
                 <li>
                     <a href="/" className="menu-list-item">
                         <img alt="icon" style={{ top: 14 }} src={ require("../asset/img/home-run.png") }/>

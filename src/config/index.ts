@@ -14,5 +14,3 @@ export const LINK_PROFILE = DOMAIN_API + '/backend/cas/profile';
 export const MOBIFONE_PATH = 'https://m.ibolero.vn';
 export const MOBIFONE_TOKEN = DOMAIN_API + '/service/token';
 export const MOBIFONE_PACKAGE = DOMAIN_API + '/service/package';
-// export const MOBIFONE_AUTH = "http://m.ibolero.vn/thvl/login";
-// export const MOBIFONE_STD = "http://m.ibolero.vn/service/mobile";

@@ -210,11 +210,11 @@ app.post('/service/package', async  (req, res) => {
 // app.post('')
 /*-----Backend Area-----*/
 
-// http.createServer(function (req, res) {
-//     res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
-//     res.end();
-// }).listen(80);
-//
-// https.createServer(options, app).listen(443);
+http.createServer(function (req, res) {
+    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+    res.end();
+}).listen(80);
 
-http.createServer(app).listen(80);
+https.createServer(options, app).listen(443);
+
+// http.createServer(app).listen(80);
