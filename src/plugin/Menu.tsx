@@ -153,7 +153,7 @@ const Menu: React.FunctionComponent<PropsInterface> = props => {
                     </a>
                 </li>
                 <li>
-                    <a href="/" className="menu-list-item">
+                    <a href="/dieu-khoan" className="menu-list-item">
                         <img alt="icon" style={{ top: 14 }} src={ require("../asset/img/flag.png") }/>
                         Điều khoản dịch vụ
                     </a>

@@ -36,14 +36,14 @@ const Package: React.FunctionComponent<PropsInterface> = props => {
             syntax: "VL30",
             board: '999',
             code: "VL30",
-            data: '1G'
+            data: '1GB'
         },
         {
             name: "Gói THVL data VIP",
             syntax: "VL80",
             board: '999',
             code: "VL80",
-            data: '3G'
+            data: '3GB'
         },
     ])
 

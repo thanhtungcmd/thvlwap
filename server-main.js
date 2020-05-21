@@ -58,6 +58,10 @@ app.get('/goi-cuoc', (req, res) => {
 app.get('/tim-kiem/:id', (req, res) => {
     return res.sendFile('./dist/index.html', {root: __dirname });
 });
+
+app.get('/dieu-khoan', (req, res) => {
+    return res.sendFile('./dist/index.html', {root: __dirname });
+});
 /*-----Frontend Area-----*/
 
 /*-----Backend Area-----*/
