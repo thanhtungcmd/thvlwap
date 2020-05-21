@@ -77,7 +77,7 @@ class Live extends React.Component<PropsInterface, CurrentState> {
             && typeof this.props.live.ribbon != "undefined") {
             this.props.actions.getEpgLiveAction(this.props.live.data.id, moment().format('YYYY-MM-DD'))
         }
-        if (typeof this.props.live.epg != "undefined") {
+        if (typeof this.props.live.epg != "undefined" && !this.state.update_detect) {
             let currentChannel = document.getElementById("live-active");
             currentChannel.scrollIntoView();
         }
@@ -179,7 +179,11 @@ class Live extends React.Component<PropsInterface, CurrentState> {
             if (this.props.live.epg.length > 0) {
                 let currentTime: number = parseInt(moment().format('X'));
                 listMovie = this.props.live.epg.map((item, key) => {
-                    if (currentTime >= item.start_at && currentTime <= item.end_at) {
+                    if (
+                        (currentTime >= item.start_at && currentTime <= item.end_at && !this.state.update_detect)
+                        ||
+                        (this.state.update_detect && this.state.live == item.link_play)
+                    ) {
                         return (
                             <div id="live-active" className="col-12 mb-4" key={key}>
                                 <div onClick={ this.handleChannel.bind(this, item.link_play) }>

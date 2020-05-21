@@ -1,10 +1,18 @@
 const express = require('express');
 const cors = require('cors')
 const request = require('request-promise');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const https = require('https');
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
 
 const app = express()
-const port = 3000
+const port = 80
+const options = {
+    key: fs.readFileSync('private.pem'),
+    cert: fs.readFileSync('sub.ditech.vn.crt')
+};
 
 app.use(cors());
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
@@ -172,7 +180,32 @@ app.post('/service/token', async  (req, res) => {
     return res.send(data);
 });
 
-app.post('')
+app.post('/service/token', async  (req, res) => {
+    let data = await request.post({
+        url: "http://45.125.208.58:5901/oauth/token",
+        headers: {
+            "Authorization": 'Basic dGVzdGp3dGNsaWVudGlkOlhZN2ttem9OemwxMDA=',
+        },
+        form: {
+            'grant_type': "password",
+            'password': "jwtpass",
+            'username': "john.doe"
+        }
+    })
+
+    return res.send(data);
+});
+
+// app.post()
+
+// app.post('')
 /*-----Backend Area-----*/
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+// http.createServer(function (req, res) {
+//     res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+//     res.end();
+// }).listen(80);
+//
+// https.createServer(options, app).listen(443);
+
+http.createServer(app).listen(80);
