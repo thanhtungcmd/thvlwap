@@ -196,7 +196,16 @@ app.post('/service/token', async  (req, res) => {
     return res.send(data);
 });
 
-// app.post()
+app.post('/service/package', async  (req, res) => {
+    let data = await request.get({
+        url: "http://45.125.208.58:5901/springjwt/checkpackage/" + req.body.msisdn,
+        headers: {
+            "Authorization": 'Bearer ' + req.body.token,
+        }
+    })
+
+    return res.send(data);
+});
 
 // app.post('')
 /*-----Backend Area-----*/

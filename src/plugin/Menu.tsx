@@ -145,7 +145,7 @@ const Menu: React.FunctionComponent<PropsInterface> = props => {
                 </li>
                 { renderMenuView() }
                 <li>
-                    <a href="/" className="menu-list-item menu-list-sub">
+                    <a href="/goi-cuoc" className="menu-list-item menu-list-sub">
                         <img alt="icon" style={{ top: 16 }} src={ require("../asset/img/dangkygoi.png") }/>
                         Đăng ký gói cước
                     </a>
