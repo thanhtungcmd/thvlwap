@@ -63,24 +63,34 @@ const Package: React.FunctionComponent<PropsInterface> = props => {
                     </div>
                 )
             }
+
+            // Check Device
+            let link;
+            if ( navigator.userAgent.match(/iPhone|iPad|iPod/i) ) {
+                link = 'sms:'+ item.board +'&body=DK '+ item.syntax
+            } else if ( navigator.userAgent.match(/Android/i) ) {
+                link = 'sms:+'+ item.board +'?body=DK '+ item.syntax
+            }
             return (
-                <div className="row pb-5" key={key}>
-                    <div className="col-5 position-relative">
-                        <img id={"package-img-" + (key + 1)} src={ require('asset/img/package-'+ (key + 1) +'.png') } alt="package"/>
-                        { checked }
-                    </div>
-                    <div className="col-7 pl-0">
-                        <div className="package-title">{ item.name }</div>
-                        <div className="package-price">
-                            Soạn <span>{ item.syntax }</span> gửi <span>{ item.board }</span>
+                <a href={link} className="text-white">
+                    <div className="row pb-5" key={key}>
+                        <div className="col-5 position-relative">
+                            <img id={"package-img-" + (key + 1)} src={ require('asset/img/package-'+ (key + 1) +'.png') } alt="package"/>
+                            { checked }
                         </div>
-                        <div className="package-sub">
-                            Tặng { item.data } tốc độ cao lướt internet<br/>
-                            Không giới hạn 3G 4G tốc độ cao xem THVL <br/>
-                            Không phải xem quảng cáo online
+                        <div className="col-7 pl-0">
+                            <div className="package-title">{ item.name }</div>
+                            <div className="package-price">
+                                Soạn <span>{ item.syntax }</span> gửi <span>{ item.board }</span>
+                            </div>
+                            <div className="package-sub">
+                                Tặng { item.data } tốc độ cao lướt internet<br/>
+                                Không giới hạn 3G 4G tốc độ cao xem THVL <br/>
+                                Không phải xem quảng cáo online
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             )
         })
     }
