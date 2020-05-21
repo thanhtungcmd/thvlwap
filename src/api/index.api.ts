@@ -17,6 +17,14 @@ export const ApiGetRibbonDetail = (id: string, page: number = 1) => {
     });
 }
 
+export const ApiGetSearch = (id: string, page: number = 1) => {
+    return axios.get(link.LINK_SEARCH + id, {
+        params: {
+            page: page
+        }
+    });
+}
+
 export const ApiRibbonLoadMore = (id: string, page: number) => {
     return axios.get(link.LINK_RIBBON_DETAIL + id, {
         params: {

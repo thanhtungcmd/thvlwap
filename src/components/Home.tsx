@@ -145,11 +145,22 @@ const Home: React.FunctionComponent<PropsInterface> = props => {
         }
     }
 
+    const renderPopup = () => {
+        return (
+            <div className="popup-3g">
+                <a href="/goi-cuoc">
+                <img alt="icon" style={{ width: 80 }} src={ require("../asset/img/free3g.png") }/>
+                </a>
+            </div>
+        )
+    }
+
     return (
         <div>
             <Header/>
             { renderBanner() }
             { renderRibbon() }
+            { renderPopup() }
         </div>
     )
 

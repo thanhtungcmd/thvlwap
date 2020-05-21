@@ -601,6 +601,21 @@ input[type=password] {
         margin-top: 8px;
     }
 }
+.popup-3g {
+    position: fixed;
+    z-index: 1;
+    bottom: 40%;
+    right: 5px;
+}
+.search-box {
+    position: absolute;
+    top: 47px;
+    right: 5px;
+    z-index: 1;
+    padding: 5px;
+    background: #0e0e0e;
+    display: none;
+}
 
 /*Video*/
 .video-js {

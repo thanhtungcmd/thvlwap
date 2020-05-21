@@ -54,6 +54,10 @@ app.get('/dang-ky', (req, res) => {
 app.get('/goi-cuoc', (req, res) => {
     return res.sendFile('./dist/index.html', {root: __dirname });
 });
+
+app.get('/tim-kiem/:id', (req, res) => {
+    return res.sendFile('./dist/index.html', {root: __dirname });
+});
 /*-----Frontend Area-----*/
 
 /*-----Backend Area-----*/
@@ -70,6 +74,16 @@ app.get('/backend/cm/menu/e3f56e40-94b0-4e1f-9830-7c7f0d1bd354', async (req, res
 app.get('/backend/cm/ribbon/:id', async (req, res) => {
     let data = await request({
         url: 'https://api.thvli.vn/backend/cm/ribbon/'+ req.params.id,
+        qs: {
+            page: req.query.page
+        }
+    });
+    return res.send(data);
+});
+
+app.get('/backend/cm/search/:id', async (req, res) => {
+    let data = await request({
+        url: 'https://api.thvli.vn/backend/cm/search/'+ req.params.id,
         qs: {
             page: req.query.page
         }
@@ -210,11 +224,11 @@ app.post('/service/package', async  (req, res) => {
 // app.post('')
 /*-----Backend Area-----*/
 
-http.createServer(function (req, res) {
-    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
-    res.end();
-}).listen(80);
+// http.createServer(function (req, res) {
+//     res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+//     res.end();
+// }).listen(80);
+//
+// https.createServer(options, app).listen(443);
 
-https.createServer(options, app).listen(443);
-
-// http.createServer(app).listen(80);
+http.createServer(app).listen(80);

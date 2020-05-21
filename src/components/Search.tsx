@@ -13,9 +13,9 @@ interface StatePropsInterface {
 
 interface DispatchPropsInterface {
     actions?: {
-        getRibbonDetailAction: any,
+        getSearchAction: any,
         changeTitleAction: any,
-        ribbonLoadMoreAction: any
+        searchLoadMoreAction: any
     }
 }
 
@@ -35,13 +35,13 @@ const mapStateToProps = (state: StateInterface) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     actions: bindActionCreators({
-        getRibbonDetailAction: RibbonAction.getRibbonDetailAction,
+        getSearchAction: RibbonAction.getSearchAction,
         changeTitleAction: MenuAction.changeTitleAction,
-        ribbonLoadMoreAction: RibbonAction.ribbonLoadMoreAction
+        searchLoadMoreAction: RibbonAction.searchLoadMoreAction
     }, dispatch)
 });
 
-class Ribbon extends React.Component<PropsInterface, {}> {
+class Search extends React.Component<PropsInterface, {}> {
 
     constructor(props: PropsInterface) {
         super(props);
@@ -49,7 +49,8 @@ class Ribbon extends React.Component<PropsInterface, {}> {
     }
 
     componentDidMount() {
-        this.props.actions.getRibbonDetailAction(this.props.match.params.id, 1);
+        this.props.actions.getSearchAction(this.props.match.params.id, 1);
+        this.props.actions.changeTitleAction("Tìm kiếm");
 
         // Scroll
         document.addEventListener('scroll', this.trackScrolling, false);
@@ -61,17 +62,11 @@ class Ribbon extends React.Component<PropsInterface, {}> {
         document.removeEventListener('resize', this.trackScrolling, false);
     }
 
-    componentDidUpdate(prevProps: Readonly<PropsInterface>) {
-        if (typeof this.props.ribbon.name != "undefined") {
-            this.props.actions.changeTitleAction(this.props.ribbon.name);
-        }
-    }
-
     trackScrolling() {
         const wrappedElement = document.getElementById('container');
         if ((wrappedElement.getBoundingClientRect().bottom - 1) <= window.innerHeight) {
             setTimeout(() => {
-                this.props.actions.ribbonLoadMoreAction(this.props.match.params.id, this.props.ribbon.page + 1)
+                this.props.actions.searchLoadMoreAction(this.props.match.params.id, this.props.ribbon.page + 1)
             }, 1000);
         }
     }
@@ -136,6 +131,15 @@ class Ribbon extends React.Component<PropsInterface, {}> {
         return (
             <div id="container">
                 <Header/>
+                <div className="container-fluid header-6 pt-4 pr-0 pl-0">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-12 text-white">
+                                <h3>Từ khóa: { this.props.match.params.id }</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 { this.renderRibbon() }
             </div>
         )
@@ -146,4 +150,4 @@ class Ribbon extends React.Component<PropsInterface, {}> {
 export default connect<StatePropsInterface, DispatchPropsInterface, PropsInterface, StateInterface>(
     mapStateToProps,
     mapDispatchToProps
-)(Ribbon);
+)(Search);

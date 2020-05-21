@@ -6,6 +6,7 @@ import Live from 'components/Live'
 import Login from 'components/Login'
 import Register from "components/Register";
 import Package from "components/Package";
+import Search from "components/Search";
 import {
     BrowserRouter, Route, Switch
 } from 'react-router-dom'
@@ -108,6 +109,7 @@ const App: React.FunctionComponent<PropInterface> = props => {
                     <Route exact path="/dang-nhap" component={Login}/>
                     <Route exact path="/dang-ky" component={Register}/>
                     <Route exact path="/goi-cuoc" component={Package}/>
+                    <Route path="/tim-kiem/:id" component={Search}/>
                 </Switch>
             )
         }

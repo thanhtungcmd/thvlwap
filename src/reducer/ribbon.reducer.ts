@@ -17,6 +17,7 @@ const ribbonReducer = (state: RibbonState = {}, action: RIBBON_ACTION) => {
             return {
                 ...state,
                 items: state.items.concat(action.data.items),
+                metadata: action.data.metadata,
                 page: action.page
             }
 

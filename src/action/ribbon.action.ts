@@ -1,6 +1,28 @@
 import * as types from 'action/ribbon.action.type'
 import { Dispatch } from "redux"
-import { ApiGetRibbonDetail, ApiRibbonLoadMore } from "api/index.api"
+import { ApiGetRibbonDetail, ApiRibbonLoadMore, ApiGetSearch } from "api/index.api"
+
+export const getSearchAction = (id: string, page: number = 1) => {
+    return async (dispatch: Dispatch) => {
+        let response = await ApiGetSearch(id, page);
+        if (response.status == 200) {
+            dispatch(
+                getRibbonSuccess(response.data)
+            )
+        }
+    }
+}
+
+export const searchLoadMoreAction = (id: string, page: number) => {
+    return async (dispatch: Dispatch) => {
+        let response = await ApiRibbonLoadMore(id, page);
+        if (response.status == 200) {
+            dispatch(
+                ribbonLoadMoreSuccess(response.data, page)
+            )
+        }
+    }
+}
 
 export const getRibbonDetailAction = (id: string, page: number = 1) => {
     return async (dispatch: Dispatch) => {
