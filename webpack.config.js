@@ -47,29 +47,29 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/'
     },
-    // optimization: {
-    //     minimizer: [
-    //         new TerserPlugin({
-    //             cache: true,
-    //             parallel: true,
-    //             sourceMap: true
-    //         }),
-    //     ],
-    //     splitChunks: {
-    //         chunks: 'all',
-    //         name: true,
-    //         maxSize: 24400,
-    //         cacheGroups: {
-    //             vendor: {
-    //                 test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-    //                 name: 'react',
-    //                 chunks: 'all',
-    //             }
-    //         }
-    //     }
-    // },
+    optimization: {
+        minimizer: [
+            new TerserPlugin({
+                cache: true,
+                parallel: true,
+                sourceMap: true
+            }),
+        ],
+        splitChunks: {
+            chunks: 'all',
+            name: true,
+            maxSize: 24400,
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+                    name: 'react',
+                    chunks: 'all',
+                }
+            }
+        }
+    },
     plugins: [
-        // new CleanWebpackPlugin(),
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: './src/asset/html/index.html'
         }),

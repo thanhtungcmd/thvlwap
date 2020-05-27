@@ -8,14 +8,14 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express()
-const port = 80
-const options = {
-    key: fs.readFileSync('private.pem'),
-    cert: fs.readFileSync('sub.ditech.vn.crt')
-};
+// const port = 80
+// const options = {
+//     key: fs.readFileSync('private.pem'),
+//     cert: fs.readFileSync('sub.ditech.vn.crt')
+// };
 
 app.use(cors());
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
@@ -228,11 +228,11 @@ app.post('/service/package', async  (req, res) => {
 // app.post('')
 /*-----Backend Area-----*/
 
-http.createServer(function (req, res) {
-    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
-    res.end();
-}).listen(80);
+// http.createServer(function (req, res) {
+//     res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+//     res.end();
+// }).listen(80);
+//
+// https.createServer(options, app).listen(443);
 
-https.createServer(options, app).listen(443);
-
-// http.createServer(app).listen(80);
+http.createServer(app).listen(8085);
